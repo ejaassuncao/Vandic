@@ -75,3 +75,6 @@
 - Permitir Gerenciar as Vendas
 - Após realizar pedido venda eh enviada um email de confirmação;
 - Tela de gerecimento de pedidos modificação de status.
+
+### Usar o mudblazor para criação das tela
+ Site: https://mudblazor.com/
