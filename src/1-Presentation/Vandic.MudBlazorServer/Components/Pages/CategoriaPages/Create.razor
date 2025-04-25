@@ -1,0 +1,85 @@
+﻿@* @page "/categorias/create"
+@using Microsoft.EntityFrameworkCore
+@using Vandic.Domain.Models
+@inject IDbContextFactory<Vandic.Infra.Data.Context.AppDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h2>Categoria</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Categoria" OnValidSubmit="AddCategoria" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label> 
+                <InputNumber id="name" @bind-Value="Categoria.Name" class="form-control" /> 
+                <ValidationMessage For="() => Categoria.Name" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="internalid" class="form-label">InternalId:</label> 
+                <InputNumber id="internalid" @bind-Value="Categoria.InternalId" class="form-control" /> 
+                <ValidationMessage For="() => Categoria.InternalId" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="excluido" class="form-label">Excluido:</label> 
+                <InputCheckbox id="excluido" @bind-Value="Categoria.Excluido" class="form-check-input" /> 
+                <ValidationMessage For="() => Categoria.Excluido" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="criadopor" class="form-label">CriadoPor:</label> 
+                <InputText id="criadopor" @bind-Value="Categoria.CriadoPor" class="form-control" /> 
+                <ValidationMessage For="() => Categoria.CriadoPor" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="alteradopor" class="form-label">AlteradoPor:</label> 
+                <InputText id="alteradopor" @bind-Value="Categoria.AlteradoPor" class="form-control" /> 
+                <ValidationMessage For="() => Categoria.AlteradoPor" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="excluidopor" class="form-label">ExcluidoPor:</label> 
+                <InputText id="excluidopor" @bind-Value="Categoria.ExcluidoPor" class="form-control" /> 
+                <ValidationMessage For="() => Categoria.ExcluidoPor" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="datainclusao" class="form-label">DataInclusao:</label> 
+                <InputDate id="datainclusao" @bind-Value="Categoria.DataInclusao" class="form-control" /> 
+                <ValidationMessage For="() => Categoria.DataInclusao" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="dataalteracao" class="form-label">DataAlteracao:</label> 
+                <InputDate id="dataalteracao" @bind-Value="Categoria.DataAlteracao" class="form-control" /> 
+                <ValidationMessage For="() => Categoria.DataAlteracao" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="dataexclusao" class="form-label">DataExclusao:</label> 
+                <InputDate id="dataexclusao" @bind-Value="Categoria.DataExclusao" class="form-control" /> 
+                <ValidationMessage For="() => Categoria.DataExclusao" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/categoria">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Categoria Categoria { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddCategoria()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Categorias.Add(Categoria);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/categoria");
+    }
+}
+ *@

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Vandic.MudBlazorServer.Components.Pages.Categoria
+namespace Vandic.MudBlazorServer.Components.Services
 {
     public class CategoriaViewModel
     {

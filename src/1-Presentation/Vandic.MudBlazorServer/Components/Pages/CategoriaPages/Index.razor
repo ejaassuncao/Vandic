@@ -1,0 +1,36 @@
+﻿@page "/categorias"
+
+@using System.Net.Http.Json
+@using Newtonsoft.Json
+@using Vandic.Domain.Models
+@using Vandic.MudBlazorServer.Components.Services
+@inject CategoriaService categoriaService
+
+<MudDataGrid Items="@categorias.Take(4)">
+    <Columns>
+        <PropertyColumn Property="x => x.Id" Title="Nr" />     
+        <PropertyColumn Property="x => x.Nome" /> 
+    </Columns>
+</MudDataGrid>
+
+@code {
+    private IEnumerable<Categoria> categorias = new List<Categoria>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var jsonObject = await categoriaService.GetAllAsync();
+
+        if (!string.IsNullOrEmpty(jsonObject))
+        {
+            var settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto,
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                Formatting = Formatting.Indented
+            };
+            categorias = JsonConvert.DeserializeObject<IEnumerable<Categoria>>(jsonObject, settings);
+        }        
+        
+        categorias = categorias ?? new List<Categoria>(); // Ensure categorias is not null
+    }
+}

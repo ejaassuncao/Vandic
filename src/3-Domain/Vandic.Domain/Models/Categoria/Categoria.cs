@@ -4,6 +4,6 @@ namespace Vandic.Domain.Models
 {
     public class Categoria: AggregateRoot
     {
-        public int Name { get; set; }
+        public string Nome { get; set; }
     }
 }

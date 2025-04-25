@@ -1,0 +1,6 @@
+@Vandic.Api_HostAddress = http://localhost:5052/api
+
+GET {{Vandic.Api_HostAddress}}/categorias
+Accept: application/json
+
+###
