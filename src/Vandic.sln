@@ -15,6 +15,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Infra", "4-Infra", "{25B1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vandic.MudBlazorServer", "1-Presentation\Vandic.MudBlazorServer\Vandic.MudBlazorServer.csproj", "{DB1D9F6F-67F7-ECFC-99B3-F82F458746FE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{380A7511-A354-6D7A-0CC0-8FA1F1BA7B6C}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vandic.Infra.Data", "4-Infra\Vandic.Infra.Data\Vandic.Infra.Data.csproj", "{A5107711-43EA-443C-9B31-D95C8AF7F748}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vandic.Domain", "3-Domain\Vandic.Domain\Vandic.Domain.csproj", "{9B05D003-58E2-4C51-8BEC-E756721BF943}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +40,14 @@ Global
 		{DB1D9F6F-67F7-ECFC-99B3-F82F458746FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB1D9F6F-67F7-ECFC-99B3-F82F458746FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB1D9F6F-67F7-ECFC-99B3-F82F458746FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5107711-43EA-443C-9B31-D95C8AF7F748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5107711-43EA-443C-9B31-D95C8AF7F748}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5107711-43EA-443C-9B31-D95C8AF7F748}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5107711-43EA-443C-9B31-D95C8AF7F748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B05D003-58E2-4C51-8BEC-E756721BF943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B05D003-58E2-4C51-8BEC-E756721BF943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B05D003-58E2-4C51-8BEC-E756721BF943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B05D003-58E2-4C51-8BEC-E756721BF943}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +55,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{85289D1D-8B1C-BA7D-4CFE-65AC3B1CAA63} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{DB1D9F6F-67F7-ECFC-99B3-F82F458746FE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{A5107711-43EA-443C-9B31-D95C8AF7F748} = {25B15F8C-7073-4F99-B62A-B86A3590C4D1}
+		{9B05D003-58E2-4C51-8BEC-E756721BF943} = {719D5C82-A3BD-4BEF-B914-B2DABD1D613A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F2E88338-CCB9-4E2B-A003-EF40D3451B74}
