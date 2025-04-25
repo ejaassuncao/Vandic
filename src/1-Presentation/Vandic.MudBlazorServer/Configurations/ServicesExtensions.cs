@@ -12,9 +12,11 @@ namespace Vandic.MudBlazorServer.Configurations
             {
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.CacheControl = CacheControlHeaderValue.Parse("no-cache");              
-             
-                var uri = new Uri(config["BaseUrlApi"] ?? throw new ArgumentNullException("BaseUrlApi", "A chave BaseUrlApi não foi configurada."));
+                client.DefaultRequestHeaders.CacheControl = CacheControlHeaderValue.Parse("no-cache");
+
+                var url = config["BaseUrlApi"] ?? throw new ArgumentNullException("BaseUrlApi", "A chave BaseUrlApi não foi configurada.");
+                Uri uri = url.EndsWith("/") ? new Uri(url) : new Uri($"{url}/");                   
+
                 client.BaseAddress = uri;
             });
 
