@@ -5,29 +5,54 @@
 @using Vandic.Domain.Models
 @using Vandic.MudBlazorServer.Components.Services
 @inject CategoriaService categoriaService
+@inject ISnackbar Snackbar
+
+<PageTitle>@title</PageTitle>
 
 <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge">
-
-    <MudDataGrid Items="@categorias.Take(4)">
-        <Columns>
-            <PropertyColumn Property="x => x.Id" Title="Codigo" />
-            <PropertyColumn Property="x => x.Nome" />
-        </Columns>
-    </MudDataGrid>
-
+    <MudCard Outlined="true">
+        <MudCardHeader>          
+            <MudText Typo="Typo.h6" Class="my-2">@title</MudText>
+            </MudCardHeader>
+        <MudCardContent>
+            <MudDataGrid @ref="dataGrid" T="Categoria" ServerData="ServerReload" Filterable="false">
+                <ToolBarContent>      
+                    <MudTextField T="string" ValueChanged="@(s => OnSearch(s))"
+                        Placeholder="Pesquisar" 
+                        Adornment="Adornment.Start"
+                       AdornmentIcon="@Icons.Material.Filled.Search" 
+                       IconSize="Size.Medium" Class="mt-0"/>
+                       <MudSpacer/>
+                       <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Class="mt-0" Href="/categorias/criar" />
+                </ToolBarContent>
+                <Columns>
+                    <PropertyColumn Property="x => x.Id" Title="Código" />
+                    <PropertyColumn Property="x => x.Nome" Title="Nome" />
+                    <TemplateColumn Hidden="false" CellClass="d-flex justify-end" Context="categoria">
+                        <CellTemplate>
+                            <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Visibility" Href="/categorias/visualizar" />
+                            <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" Href="/categorias/editar" />
+                            <MudIconButton Size="@Size.Small" Color="Color.Error" Icon="@Icons.Material.Outlined.Delete" OnClick="@(() => OnExcluir(categoria.Item.Id))" />
+                        </CellTemplate>
+                    </TemplateColumn>
+                </Columns>
+                <PagerContent>
+                    <MudDataGridPager T="Categoria" />
+                </PagerContent>
+            </MudDataGrid>
+        </MudCardContent>
+    </MudCard>
 </MudContainer>
 
-
-
-
 @code {
-
-    private IEnumerable<Categoria> categorias = new List<Categoria>();
-
-    protected override async Task OnInitializedAsync()
+    private string title = "Listar Categorias";
+    private MudDataGrid<Categoria> dataGrid;
+    private string searchString = null;  
+    private async Task<GridData<Categoria>> ServerReload(GridState<Categoria> state)
     {
         var jsonObject = await categoriaService.GetAllAsync();
 
+        IEnumerable<Categoria> categorias = new List<Categoria>();
         if (!string.IsNullOrEmpty(jsonObject))
         {
             var settings = new JsonSerializerSettings
@@ -39,6 +64,57 @@
             categorias = JsonConvert.DeserializeObject<IEnumerable<Categoria>>(jsonObject, settings);
         }
 
-        categorias = categorias ?? new List<Categoria>(); // Ensure categorias is not null
+        //filtrar dados
+        var data = categorias.Where(x =>
+        {
+            if (string.IsNullOrWhiteSpace(searchString))
+                return true;
+            if (x.Id.ToString().Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+            if (x.Nome.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+            return false;
+        });
+        var totalItems = data.Count();
+
+        //Ordenar dados
+        var sortDefinition = state.SortDefinitions.FirstOrDefault();
+        if (sortDefinition != null)
+        {
+            switch (sortDefinition.SortBy)
+            {
+                case nameof(Categoria.Id):
+                    data = data.OrderByDirection(
+                        sortDefinition.Descending ? SortDirection.Descending : SortDirection.Ascending,
+                        o => o.Id
+                    );
+                    break;
+                case nameof(Categoria.Nome):
+                    data = data.OrderByDirection(
+                        sortDefinition.Descending ? SortDirection.Descending : SortDirection.Ascending,
+                        o => o.Nome
+                    );
+                    break;             
+            }
+        }
+        var pagedData = data.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
+
+        return new GridData<Categoria>
+        {
+            TotalItems=  totalItems,
+            Items = pagedData 
+        };
+    }
+       
+    private Task OnSearch(string text)
+    {
+        Snackbar.Add($"texto: {text}", Severity.Info);
+        searchString = text;
+        return dataGrid.ReloadServerData();
+    }
+
+    private async Task OnExcluir(Guid id)
+    {
+        Snackbar.Add($"Guid: {id}", Severity.Info);
     }
 }
