@@ -1,6 +1,6 @@
 ﻿namespace Vandic.Domain.Abstracts
 {
-    public class Entity
+    public abstract class EntityBase
     {
         public Guid Id { get; set; }
 
@@ -15,7 +15,9 @@
         public string ExcluidoPor { get; set; } = string.Empty;
          
         public DateTime DataInclusao { get; set; }
+
         public DateTime DataAlteracao { get; set; }
+
         public DateTime DataExclusao { get; set; }
 
     }

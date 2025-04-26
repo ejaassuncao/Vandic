@@ -6,14 +6,22 @@
 @using Vandic.MudBlazorServer.Components.Services
 @inject CategoriaService categoriaService
 
-<MudDataGrid Items="@categorias.Take(4)">
-    <Columns>
-        <PropertyColumn Property="x => x.Id" Title="Nr" />     
-        <PropertyColumn Property="x => x.Nome" /> 
-    </Columns>
-</MudDataGrid>
+<MudContainer MaxWidth="MaxWidth.ExtraExtraLarge">
+
+    <MudDataGrid Items="@categorias.Take(4)">
+        <Columns>
+            <PropertyColumn Property="x => x.Id" Title="Codigo" />
+            <PropertyColumn Property="x => x.Nome" />
+        </Columns>
+    </MudDataGrid>
+
+</MudContainer>
+
+
+
 
 @code {
+
     private IEnumerable<Categoria> categorias = new List<Categoria>();
 
     protected override async Task OnInitializedAsync()
@@ -29,8 +37,8 @@
                 Formatting = Formatting.Indented
             };
             categorias = JsonConvert.DeserializeObject<IEnumerable<Categoria>>(jsonObject, settings);
-        }        
-        
+        }
+
         categorias = categorias ?? new List<Categoria>(); // Ensure categorias is not null
     }
 }

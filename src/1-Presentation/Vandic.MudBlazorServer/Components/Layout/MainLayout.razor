@@ -6,14 +6,20 @@
 <MudSnackbarProvider />
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />       
-        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudSpacer />        
+        <MudBadge Visible="true" Content="0" Overlap="true" Dot="true" Color="Color.Error" Origin="Origin.TopRight">
+            <MudIconButton Icon="@Icons.Material.Filled.NotificationsNone" Color="Color.Inherit" />
+        </MudBadge>
         <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        <MudIconButton Icon="@Icons.Material.Rounded.Person" Color="Color.Inherit" Edge="Edge.End" />
     </MudAppBar>
     <MudDrawer id="nav-drawer" @bind-Open="_drawerOpen" Elevation="2">
-        <MudDrawerHeader>
-            <MudText Typo="Typo.h5" Class="mt-1">Vandic 1.0</MudText>
+        <MudDrawerHeader>            
+            <MudAvatar Size="Size.Medium" Color="Color.Primary" Class="mx-1 my-1">
+               V
+            </MudAvatar>
+            <MudText Typo="Typo.h5" Class="my-2">&nbsp;Vandic</MudText>
         </MudDrawerHeader>
         <NavMenu />
     </MudDrawer>
@@ -97,7 +103,7 @@
 
     public string DarkLightModeButtonIcon => _isDarkMode switch
     {
-        true => Icons.Material.Rounded.AutoMode,
+        true => Icons.Material.Rounded.LightMode,
         false => Icons.Material.Outlined.DarkMode,
     };
 }
