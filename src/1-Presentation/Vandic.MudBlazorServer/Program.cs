@@ -31,7 +31,7 @@ namespace Vandic.MudBlazorServer
                 .AddInteractiveServerComponents();
 
 
-            builder.Services.AddTransient<MudLocalizer, MudLocalizationPtBr>();
+           // builder.Services.AddTransient<MudLocalizer, MudLocalizationPtBr>();
 
             builder.Services.AddVandicServices(builder.Configuration);
             builder.Services.AddLocalization();
@@ -51,7 +51,7 @@ namespace Vandic.MudBlazorServer
             app.UseHttpsRedirection();
 
 
-            var supportedCultures = new[] { "en-US", "pt-BR" };
+            var supportedCultures = new[] { "en-US", "pt-BR", "es" };
             var localizationOptions = new RequestLocalizationOptions()
                 .SetDefaultCulture("pt-BR")
                 .AddSupportedCultures(supportedCultures)
