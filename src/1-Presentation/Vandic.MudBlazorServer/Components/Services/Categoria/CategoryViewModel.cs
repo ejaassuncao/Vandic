@@ -2,7 +2,7 @@
 
 namespace Vandic.MudBlazorServer.Components.Services
 {
-    public class CategoriaViewModel
+    public class CategoryViewModel
     {
         public int Id { get; set; }
 

@@ -8,7 +8,7 @@ namespace Vandic.MudBlazorServer.Configurations
     {
         public static IServiceCollection AddVandicServices(this IServiceCollection services, IConfiguration config)
         {        
-            services.AddHttpClient<CategoriaService>(client =>
+            services.AddHttpClient<CategoryService>(client =>
             {
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
