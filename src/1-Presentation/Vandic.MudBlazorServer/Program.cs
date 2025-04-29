@@ -1,7 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MudBlazor;
 using MudBlazor.Services;
+using MudBlazor.Translations;
+using Vandic.CrossCutting.Resources.Configurations;
 using Vandic.Data.efcore.Context;
 using Vandic.MudBlazorServer.Components;
+using Vandic.MudBlazorServer.Components.Resources;
 using Vandic.MudBlazorServer.Configurations;
 
 namespace Vandic.MudBlazorServer
@@ -20,15 +24,20 @@ namespace Vandic.MudBlazorServer
 
             // Add MudBlazor services
             builder.Services.AddMudServices();
+            builder.Services.AddMudTranslations();
 
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
+
+            builder.Services.AddTransient<MudLocalizer, MudLocalizationPtBr>();
+
             builder.Services.AddVandicServices(builder.Configuration);
+            builder.Services.AddLocalization();
+            builder.Services.AddVandicResources();
 
-
-           var app = builder.Build();
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -41,11 +50,22 @@ namespace Vandic.MudBlazorServer
 
             app.UseHttpsRedirection();
 
+
+            var supportedCultures = new[] { "en-US", "pt-BR" };
+            var localizationOptions = new RequestLocalizationOptions()
+                .SetDefaultCulture("pt-BR")
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+
+            app.UseRequestLocalization(localizationOptions);
+
+
             app.UseAntiforgery();
 
             app.MapStaticAssets();
             app.MapRazorComponents<App>()
                 .AddInteractiveServerRenderMode();
+
 
             app.Run();
         }

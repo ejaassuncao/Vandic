@@ -19,11 +19,13 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
     <PackageReference Include="MudBlazor" Version="8.*" />
+    <PackageReference Include="MudBlazor.Translations" Version="2.3.0" />
   </ItemGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\..\3-Domain\Vandic.Domain\Vandic.Domain.csproj" />
+    <ProjectReference Include="..\..\4-Infra\CrossCutting\Vandic.CrossCutting.Resources\Vandic.CrossCutting.Resources.csproj" />
     <ProjectReference Include="..\..\4-Infra\Data\Vandic.Data.EfCore\Vandic.Data.EfCore.csproj" />
   </ItemGroup>
 </Project>

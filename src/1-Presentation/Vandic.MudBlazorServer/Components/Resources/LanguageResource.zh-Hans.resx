@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MudAlert_Close" xml:space="preserve">
+    <value>关闭警报</value>
+  </data>
+  <data name="MudColorPicker_HueSlider" xml:space="preserve">
+    <value>色相滑块</value>
+  </data>
+  <data name="MudCarousel_Index" xml:space="preserve">
+    <value>指数 {0}</value>
+  </data>
+  <data name="MudNavGroup_ToggleExpand" xml:space="preserve">
+    <value>切换 {0}</value>
+  </data>
+  <data name="MudChip_Close" xml:space="preserve">
+    <value>关闭芯片</value>
+  </data>
+  <data name="MudColorPicker_Close" xml:space="preserve">
+    <value>关闭选择器</value>
+  </data>
+  <data name="MudColorPicker_SpectrumView" xml:space="preserve">
+    <value>切换到频谱视图</value>
+  </data>
+  <data name="MudColorPicker_GridView" xml:space="preserve">
+    <value>切换到网格视图</value>
+  </data>
+  <data name="MudColorPicker_PaletteView" xml:space="preserve">
+    <value>切换到调色板视图</value>
+  </data>
+  <data name="MudColorPicker_ToggleCurrentColor" xml:space="preserve">
+    <value>切换当前颜色</value>
+  </data>
+  <data name="MudColorPicker_AlphaSlider" xml:space="preserve">
+    <value>透明度滑块</value>
+  </data>
+  <data name="MudColorPicker_PaletteColor" xml:space="preserve">
+    <value>选择调色板颜色</value>
+  </data>
+  <data name="MudColorPicker_ModeSwitch" xml:space="preserve">
+    <value>切换模式</value>
+  </data>
+  <data name="MudBaseDatePicker_PrevYear" xml:space="preserve">
+    <value>上一年 {0}</value>
+  </data>
+  <data name="MudBaseDatePicker_NextYear" xml:space="preserve">
+    <value>下一年 {0}</value>
+  </data>
+  <data name="MudBaseDatePicker_PrevMonth" xml:space="preserve">
+    <value>上个月 {0}</value>
+  </data>
+  <data name="MudBaseDatePicker_NextMonth" xml:space="preserve">
+    <value>下个月 {0}</value>
+  </data>
+  <data name="MudPagination_CurrentPage" xml:space="preserve">
+    <value>当前页面 {0}</value>
+  </data>
+  <data name="MudPagination_FirstPage" xml:space="preserve">
+    <value>第一页</value>
+  </data>
+  <data name="MudPagination_LastPage" xml:space="preserve">
+    <value>最后一页</value>
+  </data>
+  <data name="MudPagination_NextPage" xml:space="preserve">
+    <value>下一页</value>
+  </data>
+  <data name="MudPagination_PageIndex" xml:space="preserve">
+    <value>{0} 页</value>
+  </data>
+  <data name="MudPagination_PreviousPage" xml:space="preserve">
+    <value>上一页</value>
+  </data>
+  <data name="MudRatingItem_Label" xml:space="preserve">
+    <value>{0} 评分</value>
+  </data>
+  <data name="MudCarousel_Next" xml:space="preserve">
+    <value>下一个</value>
+  </data>
+  <data name="MudCarousel_Previous" xml:space="preserve">
+    <value>上一个</value>
+  </data>
+  <data name="MudColorPicker_ColorDot" xml:space="preserve">
+    <value>选择圆点颜色</value>
+  </data>
+  <data name="MudDialog_Close" xml:space="preserve">
+    <value>关闭对话框</value>
+  </data>
+  <data name="MudInput_Clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="MudInput_Decrement" xml:space="preserve">
+    <value>减少</value>
+  </data>
+  <data name="MudInput_Increment" xml:space="preserve">
+    <value>增加</value>
+  </data>
+  <data name="MudPageContentNavigation_NavMenu" xml:space="preserve">
+    <value>目录</value>
+  </data>
+  <data name="MudTablePager_FirstPage" xml:space="preserve">
+    <value>第一页</value>
+  </data>
+  <data name="MudTablePager_LastPage" xml:space="preserve">
+    <value>最后一页</value>
+  </data>
+  <data name="MudTablePager_NextPage" xml:space="preserve">
+    <value>下一页</value>
+  </data>
+  <data name="MudTablePager_PreviousPage" xml:space="preserve">
+    <value>上一页</value>
+  </data>
+  <data name="MudSnackbar_Close" xml:space="preserve">
+    <value>关闭小吃吧</value>
+  </data>
+  <data name="MudDataGrid_ShowAll" xml:space="preserve">
+    <value>显示所有</value>
+  </data>
+  <data name="MudDataGrid_Columns" xml:space="preserve">
+    <value>列</value>
+  </data>
+  <data name="MudDataGrid_ExpandAllGroups" xml:space="preserve">
+    <value>展开全部组</value>
+  </data>
+  <data name="MudDataGrid_False" xml:space="preserve">
+    <value>伪</value>
+  </data>
+  <data name="MudDataGrid_FilterValue" xml:space="preserve">
+    <value>过滤值</value>
+  </data>
+  <data name="MudDataGrid_Contains" xml:space="preserve">
+    <value>包含</value>
+  </data>
+  <data name="MudDataGrid_StartsWith" xml:space="preserve">
+    <value>以。。开始</value>
+  </data>
+  <data name="MudDataGrid_Apply" xml:space="preserve">
+    <value>申请</value>
+  </data>
+  <data name="MudDataGrid_Unsort" xml:space="preserve">
+    <value>取消排序</value>
+  </data>
+  <data name="MudDataGrid_Hide" xml:space="preserve">
+    <value>藏</value>
+  </data>
+  <data name="MudDataGrid_IsEmpty" xml:space="preserve">
+    <value>是空的</value>
+  </data>
+  <data name="MudDataGrid_EqualSign" xml:space="preserve">
+    <value>=</value>
+  </data>
+  <data name="MudDataGrid_NotEqualSign" xml:space="preserve">
+    <value>!=</value>
+  </data>
+  <data name="MudDataGrid_NotContains" xml:space="preserve">
+    <value>不包含</value>
+  </data>
+  <data name="MudDataGrid_Clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="MudDataGrid_Loading" xml:space="preserve">
+    <value>加载中...</value>
+  </data>
+  <data name="MudDataGrid_AddFilter" xml:space="preserve">
+    <value>添加筛选器</value>
+  </data>
+  <data name="MudDataGrid_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="MudDataGrid_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="MudDataGrid_Filter" xml:space="preserve">
+    <value>筛选</value>
+  </data>
+  <data name="MudDataGrid_EndsWith" xml:space="preserve">
+    <value>以。。结束</value>
+  </data>
+  <data name="MudDataGrid_HideAll" xml:space="preserve">
+    <value>全部藏起来</value>
+  </data>
+  <data name="MudDataGrid_CollapseAllGroups" xml:space="preserve">
+    <value>折叠所有组</value>
+  </data>
+  <data name="MudDataGrid_RefreshData" xml:space="preserve">
+    <value>刷新数据</value>
+  </data>
+  <data name="MudDataGrid_True" xml:space="preserve">
+    <value>真</value>
+  </data>
+  <data name="MudDataGrid_Ungroup" xml:space="preserve">
+    <value>取消群组</value>
+  </data>
+  <data name="MudDataGrid_Group" xml:space="preserve">
+    <value>分组分组</value>
+  </data>
+  <data name="MudDataGrid_Equals" xml:space="preserve">
+    <value>等于</value>
+  </data>
+  <data name="MudDataGrid_NotEquals" xml:space="preserve">
+    <value>不等于</value>
+  </data>
+  <data name="MudDataGrid_IsNotEmpty" xml:space="preserve">
+    <value>不为空</value>
+  </data>
+  <data name="MudStepper_Next" xml:space="preserve">
+    <value>下一个</value>
+  </data>
+  <data name="MudStepper_Previous" xml:space="preserve">
+    <value>上一个</value>
+  </data>
+  <data name="MudStepper_Skip" xml:space="preserve">
+    <value>跳过</value>
+  </data>
+  <data name="MudStepper_Reset" xml:space="preserve">
+    <value>重置</value>
+  </data>
+  <data name="MudStepper_Complete" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="MudDataGrid_IsOnOrAfter" xml:space="preserve">
+    <value>在或之后</value>
+  </data>
+  <data name="MudDataGrid_IsAfter" xml:space="preserve">
+    <value>在...之后</value>
+  </data>
+  <data name="MudDataGrid_GreaterThanSign" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="MudDataGrid_GreaterThanOrEqualSign" xml:space="preserve">
+    <value>≥</value>
+  </data>
+  <data name="MudDataGrid_LessThanSign" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="MudDataGrid_LessThanOrEqualSign" xml:space="preserve">
+    <value>≤</value>
+  </data>
+  <data name="MudDataGrid_Is" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="MudDataGrid_IsNot" xml:space="preserve">
+    <value>不是</value>
+  </data>
+  <data name="MudDataGrid_IsBefore" xml:space="preserve">
+    <value>在...之前</value>
+  </data>
+  <data name="MudDataGrid_IsOnOrBefore" xml:space="preserve">
+    <value>在或之前</value>
+  </data>
+  <data name="MudDataGrid_Column" xml:space="preserve">
+    <value>列</value>
+  </data>
+  <data name="MudDataGrid_Operator" xml:space="preserve">
+    <value>运算符</value>
+  </data>
+  <data name="MudDataGrid_Value" xml:space="preserve">
+    <value>值</value>
+  </data>
+  <data name="MudDataGrid_MoveDown" xml:space="preserve">
+    <value>下移</value>
+  </data>
+  <data name="MudDataGrid_MoveUp" xml:space="preserve">
+    <value>上移</value>
+  </data>
+  <data name="MudDataGrid_Sort" xml:space="preserve">
+    <value>排序</value>
+  </data>
+  <data name="MudDataGridPager_RowsPerPage" xml:space="preserve">
+    <value>每页行数:</value>
+  </data>
+  <data name="MudDataGridPager_AllItems" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="MudDataGridPager_InfoFormat" xml:space="preserve">
+    <value>{0}至{1}, 共{2}个</value>
+  </data>
+  <data name="HeatMap_Less" xml:space="preserve">
+    <value>少于</value>
+  </data>
+  <data name="MudDataGridPager_FirstPage" xml:space="preserve">
+    <value>第一页</value>
+  </data>
+  <data name="MudDataGridPager_PreviousPage" xml:space="preserve">
+    <value>上一页</value>
+  </data>
+  <data name="MudDataGridPager_NextPage" xml:space="preserve">
+    <value>下一页</value>
+  </data>
+  <data name="MudDataGrid_ClearFilter" xml:space="preserve">
+    <value>清空筛选器</value>
+  </data>
+  <data name="MudDataGrid_OpenFilters" xml:space="preserve">
+    <value>打开筛选器</value>
+  </data>
+</root>

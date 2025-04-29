@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MudDataGrid_ShowAll" xml:space="preserve">
+    <value>نمایش همه</value>
+  </data>
+  <data name="MudDataGrid_False" xml:space="preserve">
+    <value>نادرست</value>
+  </data>
+  <data name="MudDataGrid_CollapseAllGroups" xml:space="preserve">
+    <value>بستن همه گروه ها</value>
+  </data>
+  <data name="MudDataGrid_True" xml:space="preserve">
+    <value>درست</value>
+  </data>
+  <data name="MudDataGrid_NotEquals" xml:space="preserve">
+    <value>نابرابر</value>
+  </data>
+  <data name="MudDataGrid_Contains" xml:space="preserve">
+    <value>شامل</value>
+  </data>
+  <data name="MudDataGrid_Equals" xml:space="preserve">
+    <value>برابر</value>
+  </data>
+  <data name="MudDataGrid_AddFilter" xml:space="preserve">
+    <value>افزودن فیلتر</value>
+  </data>
+  <data name="MudDataGrid_Loading" xml:space="preserve">
+    <value>در حال بارگذاری...</value>
+  </data>
+  <data name="MudDataGrid_Clear" xml:space="preserve">
+    <value>پاک کردن</value>
+  </data>
+  <data name="MudDataGrid_Save" xml:space="preserve">
+    <value>ذخیره</value>
+  </data>
+  <data name="MudDataGrid_HideAll" xml:space="preserve">
+    <value>مخفی کردن همه</value>
+  </data>
+  <data name="MudDataGrid_Columns" xml:space="preserve">
+    <value>ستون ها</value>
+  </data>
+  <data name="MudDataGrid_ExpandAllGroups" xml:space="preserve">
+    <value>گسترش همه گروه ها</value>
+  </data>
+  <data name="MudDataGrid_Unsort" xml:space="preserve">
+    <value>نامرتب</value>
+  </data>
+  <data name="MudDataGrid_Filter" xml:space="preserve">
+    <value>فیلتر</value>
+  </data>
+  <data name="MudDataGrid_Ungroup" xml:space="preserve">
+    <value>حذف گروه</value>
+  </data>
+  <data name="MudDataGrid_FilterValue" xml:space="preserve">
+    <value>مقدار فیلتر</value>
+  </data>
+  <data name="MudDataGrid_StartsWith" xml:space="preserve">
+    <value>شروع با</value>
+  </data>
+  <data name="MudDataGrid_EndsWith" xml:space="preserve">
+    <value>پایان با</value>
+  </data>
+  <data name="MudDataGrid_IsEmpty" xml:space="preserve">
+    <value>خالیست</value>
+  </data>
+  <data name="MudDataGrid_IsNotEmpty" xml:space="preserve">
+    <value>خالی نیست</value>
+  </data>
+  <data name="MudDataGrid_Cancel" xml:space="preserve">
+    <value>لغو</value>
+  </data>
+  <data name="MudDataGrid_RefreshData" xml:space="preserve">
+    <value>تازه سازی</value>
+  </data>
+  <data name="MudDataGrid_Hide" xml:space="preserve">
+    <value>پنهان</value>
+  </data>
+  <data name="MudColorPicker_Close" xml:space="preserve">
+    <value>بستن انتخابگر</value>
+  </data>
+  <data name="MudColorPicker_SpectrumView" xml:space="preserve">
+    <value>نمایش طیفی</value>
+  </data>
+  <data name="MudColorPicker_GridView" xml:space="preserve">
+    <value>نمایش جدولی</value>
+  </data>
+  <data name="MudColorPicker_PaletteView" xml:space="preserve">
+    <value>نمایش پالتی</value>
+  </data>
+  <data name="MudDataGrid_EqualSign" xml:space="preserve">
+    <value>=</value>
+  </data>
+  <data name="MudDataGrid_Is" xml:space="preserve">
+    <value>هست</value>
+  </data>
+  <data name="MudDataGrid_IsNot" xml:space="preserve">
+    <value>نیست</value>
+  </data>
+  <data name="MudDataGrid_IsBefore" xml:space="preserve">
+    <value>قبل از</value>
+  </data>
+  <data name="MudDataGrid_Column" xml:space="preserve">
+    <value>ستون</value>
+  </data>
+  <data name="MudDataGrid_Operator" xml:space="preserve">
+    <value>عملگر</value>
+  </data>
+  <data name="MudDataGrid_Value" xml:space="preserve">
+    <value>مقدار</value>
+  </data>
+  <data name="MudAlert_Close" xml:space="preserve">
+    <value>بستن اعلان</value>
+  </data>
+</root>

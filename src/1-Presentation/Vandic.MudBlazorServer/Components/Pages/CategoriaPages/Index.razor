@@ -4,8 +4,9 @@
 @using Newtonsoft.Json
 @using Vandic.Domain.Models
 @using Vandic.MudBlazorServer.Components.Services
-@inject CategoryService _categoryService
+@inject CategoryService CategoryService
 @inject ISnackbar Snackbar
+@inject ILocalizationService LocationService
 
 <PageTitle>@title</PageTitle>
 
@@ -18,7 +19,7 @@
             <MudDataGrid @ref="dataGrid" T="Category" ServerData="ServerReload" Filterable="false" Dense="true" Hover="true">
                 <ToolBarContent>
                     <MudTextField T="string" ValueChanged="@(s => OnSearch(s))"
-                                  Placeholder="Pesquisar"
+                                  Placeholder="@LocationService.GetString(Messages.Procurar)"
                                   Adornment="Adornment.Start"
                                   AdornmentIcon="@Icons.Material.Filled.Search"
                                   IconSize="Size.Medium" Class="mt-0" />
@@ -26,8 +27,8 @@
                     <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Class="mt-0" Href="/category/create" />
                 </ToolBarContent>
                 <Columns>
-                    <PropertyColumn Property="x => x.Id" Title="Código" />
-                    <PropertyColumn Property="x => x.Name" Title="Nome" />
+                    <PropertyColumn Property="x => x.Id" Title="@LocationService.GetString(Messages.Codigo)" />
+                    <PropertyColumn Property="x => x.Name" Title="@LocationService.GetString(Messages.Nome)" />
                     <TemplateColumn Hidden="false" CellClass="d-flex justify-end" Context="category">
                         <CellTemplate>
                             <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Visibility" Href="/category/visualizar" />
@@ -37,7 +38,11 @@
                     </TemplateColumn>
                 </Columns>
                 <PagerContent>
-                    <MudDataGridPager T="Category" />
+                    <MudDataGridPager T="Category"
+                        RowsPerPageString="@LocationService.GetString(Messages.LinhasPorPagina)"
+                        
+                        
+                        />
                 </PagerContent>
             </MudDataGrid>
         </MudCardContent>
@@ -45,13 +50,21 @@
 </MudContainer>
 
 @code {
-    private string title = "Listar Categorias";
+    private string title = string.Empty;
     private MudDataGrid<Category> dataGrid = null!;
     private string? searchString = null;
 
+    protected override Task OnInitializedAsync()
+    {
+        title = $"{LocationService.GetString(Messages.Categoria)} - {LocationService.GetString(Messages.Listar)}";
+
+        return base.OnInitializedAsync();
+    }
+
+
     private async Task<GridData<Category>> ServerReload(GridState<Category> state)
     {
-        var jsonObject = await _categoryService.GetAllAsync();
+        var jsonObject = await CategoryService.GetAllAsync();
 
         IEnumerable<Category> categoriesResult = new List<Category>();
         if (!string.IsNullOrEmpty(jsonObject))

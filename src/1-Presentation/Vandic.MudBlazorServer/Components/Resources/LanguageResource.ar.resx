@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MudDataGrid_AddFilter" xml:space="preserve">
+    <value>إضافة فلتر</value>
+  </data>
+  <data name="MudDataGrid_Apply" xml:space="preserve">
+    <value>تطبيق</value>
+  </data>
+  <data name="MudDataGrid_Cancel" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="MudDataGrid_Loading" xml:space="preserve">
+    <value>تحميل..</value>
+  </data>
+  <data name="MudDataGrid_Save" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="MudDataGrid_HideAll" xml:space="preserve">
+    <value>إخفاء الكل</value>
+  </data>
+  <data name="MudDataGrid_ShowAll" xml:space="preserve">
+    <value>إظهار الكل</value>
+  </data>
+  <data name="MudDataGrid_ExpandAllGroups" xml:space="preserve">
+    <value>توسيع كل التجميعات</value>
+  </data>
+  <data name="MudDataGrid_CollapseAllGroups" xml:space="preserve">
+    <value>طي كل التجميعات</value>
+  </data>
+  <data name="MudDataGrid_RefreshData" xml:space="preserve">
+    <value>تحديث البيانات</value>
+  </data>
+  <data name="MudDataGrid_True" xml:space="preserve">
+    <value>صحيح</value>
+  </data>
+  <data name="MudDataGrid_Hide" xml:space="preserve">
+    <value>إخفاء</value>
+  </data>
+  <data name="MudDataGrid_Ungroup" xml:space="preserve">
+    <value>إلغاء التجميع</value>
+  </data>
+  <data name="MudDataGrid_Unsort" xml:space="preserve">
+    <value>إلغاء الترتيب</value>
+  </data>
+  <data name="MudDataGrid_Filter" xml:space="preserve">
+    <value>فلتر</value>
+  </data>
+  <data name="MudDataGrid_Group" xml:space="preserve">
+    <value>تجميع</value>
+  </data>
+  <data name="MudDataGrid_FilterValue" xml:space="preserve">
+    <value>قيمة الفلتر</value>
+  </data>
+  <data name="MudDataGrid_Columns" xml:space="preserve">
+    <value>الأعمدة</value>
+  </data>
+  <data name="MudDataGrid_False" xml:space="preserve">
+    <value>خطأ</value>
+  </data>
+  <data name="MudDataGrid_NotEquals" xml:space="preserve">
+    <value>لا يساوي</value>
+  </data>
+  <data name="MudDataGrid_NotContains" xml:space="preserve">
+    <value>لا يحتوي</value>
+  </data>
+  <data name="MudDataGrid_Contains" xml:space="preserve">
+    <value>يحتوي</value>
+  </data>
+  <data name="MudDataGrid_Equals" xml:space="preserve">
+    <value>يساوي</value>
+  </data>
+  <data name="MudDataGrid_Sort" xml:space="preserve">
+    <value>ترتيب</value>
+  </data>
+  <data name="MudDataGridPager_AllItems" xml:space="preserve">
+    <value>الكل</value>
+  </data>
+  <data name="MudDataGrid_Clear" xml:space="preserve">
+    <value>مسح</value>
+  </data>
+  <data name="MudDataGrid_StartsWith" xml:space="preserve">
+    <value>يبدأ بـ</value>
+  </data>
+  <data name="MudDataGrid_EndsWith" xml:space="preserve">
+    <value>ينتهي بـ</value>
+  </data>
+  <data name="MudDataGrid_IsEmpty" xml:space="preserve">
+    <value>فارغ</value>
+  </data>
+  <data name="MudDataGrid_IsNotEmpty" xml:space="preserve">
+    <value>ليس فارغ</value>
+  </data>
+  <data name="MudDataGrid_Is" xml:space="preserve">
+    <value>يكون</value>
+  </data>
+  <data name="MudDataGrid_Operator" xml:space="preserve">
+    <value>معامل</value>
+  </data>
+  <data name="MudDataGrid_Value" xml:space="preserve">
+    <value>القيمة</value>
+  </data>
+  <data name="MudDataGrid_MoveDown" xml:space="preserve">
+    <value>تحريك للأسفل</value>
+  </data>
+  <data name="MudDataGrid_MoveUp" xml:space="preserve">
+    <value>تحريك للأعلى</value>
+  </data>
+  <data name="MudColorPicker_GridView" xml:space="preserve">
+    <value>تبديل إلى عرض الشبكة</value>
+  </data>
+  <data name="MudColorPicker_PaletteView" xml:space="preserve">
+    <value>تبديل إلى عرض اللوحة</value>
+  </data>
+  <data name="MudColorPicker_ToggleCurrentColor" xml:space="preserve">
+    <value>تبديل اللون الحالي</value>
+  </data>
+  <data name="MudColorPicker_HueSlider" xml:space="preserve">
+    <value>شريط تمرير اللون</value>
+  </data>
+  <data name="MudColorPicker_AlphaSlider" xml:space="preserve">
+    <value>شريط تمرير شفافية اللون</value>
+  </data>
+  <data name="MudColorPicker_PaletteColor" xml:space="preserve">
+    <value>حدد لوحة الألوان</value>
+  </data>
+  <data name="MudColorPicker_ModeSwitch" xml:space="preserve">
+    <value>تبديل النمط</value>
+  </data>
+  <data name="MudBaseDatePicker_PrevYear" xml:space="preserve">
+    <value>السنة الماضية {0}</value>
+  </data>
+  <data name="MudBaseDatePicker_NextYear" xml:space="preserve">
+    <value>السنة القادمة {0}</value>
+  </data>
+</root>

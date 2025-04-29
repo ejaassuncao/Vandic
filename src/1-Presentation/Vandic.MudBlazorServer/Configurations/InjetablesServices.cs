@@ -1,10 +1,9 @@
 ﻿using System.Net.Http.Headers;
 using Vandic.MudBlazorServer.Components.Services;
-using Vandic.MudBlazorServer.Components.Services.Abstraction;
 
 namespace Vandic.MudBlazorServer.Configurations
 {
-    public static class VandicServicesExtensions
+    public static class InjetablesServices
     {
         public static IServiceCollection AddVandicServices(this IServiceCollection services, IConfiguration config)
         {        
