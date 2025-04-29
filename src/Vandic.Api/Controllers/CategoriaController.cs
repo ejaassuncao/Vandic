@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Vandic.Api.Abstract;
 using Vandic.Domain.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -8,12 +9,12 @@ namespace Vandic.Api.Controllers
     [Route("api/categorias")]
     [ApiController]
     public class CategoriaController : ControllerBase
-    {
-        // GET: api/<CategoriaController>
+    {               
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
-            return Ok(new List<Categoria>()
+            await Task.Delay(2000); // Simula um atraso de 2 segundos para fins de demonstração
+            var result = await Task.FromResult(new List<Categoria>()
             {
                 new Categoria { Id = Guid.Parse("11111111-1111-1111-1111-111111111111"), Nome = "Categoria 1" },
                 new Categoria { Id = Guid.Parse("22222222-2222-2222-2222-222222222222"), Nome = "Categoria 2" },
@@ -36,6 +37,9 @@ namespace Vandic.Api.Controllers
                 new Categoria { Id = Guid.Parse("34567890-3456-3456-3456-345678901234"), Nome = "Categoria 19" },
                 new Categoria { Id = Guid.Parse("45678901-4567-4567-4567-456789012345"), Nome = "Categoria 20" },
             });
+
+            return Ok(result);
         }
+
     }
 }
