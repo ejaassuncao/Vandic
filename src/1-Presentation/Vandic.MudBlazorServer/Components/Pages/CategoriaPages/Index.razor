@@ -4,7 +4,7 @@
 @using Newtonsoft.Json
 @using Vandic.Domain.Models
 @using Vandic.MudBlazorServer.Components.Services
-@inject CategoryService categoriaService
+@inject CategoryService _categoryService
 @inject ISnackbar Snackbar
 
 <PageTitle>@title</PageTitle>
@@ -15,7 +15,7 @@
             <MudText Typo="Typo.subtitle1" Class="my-2"><strong>@title</strong></MudText>
         </MudCardHeader>
         <MudCardContent>
-            <MudDataGrid @ref="dataGrid" T="Categoria" ServerData="ServerReload" Filterable="false" Dense="true" Hover="true">
+            <MudDataGrid @ref="dataGrid" T="Category" ServerData="ServerReload" Filterable="false" Dense="true" Hover="true">
                 <ToolBarContent>
                     <MudTextField T="string" ValueChanged="@(s => OnSearch(s))"
                                   Placeholder="Pesquisar"
@@ -23,21 +23,21 @@
                                   AdornmentIcon="@Icons.Material.Filled.Search"
                                   IconSize="Size.Medium" Class="mt-0" />
                     <MudSpacer />
-                    <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Class="mt-0" Href="/categorias/criar" />
+                    <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Class="mt-0" Href="/category/create" />
                 </ToolBarContent>
                 <Columns>
                     <PropertyColumn Property="x => x.Id" Title="Código" />
                     <PropertyColumn Property="x => x.Name" Title="Nome" />
-                    <TemplateColumn Hidden="false" CellClass="d-flex justify-end" Context="categoria">
+                    <TemplateColumn Hidden="false" CellClass="d-flex justify-end" Context="category">
                         <CellTemplate>
-                            <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Visibility" Href="/categorias/visualizar" />
-                            <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" Href="/categorias/editar" />
-                            <MudIconButton Size="@Size.Small" Color="Color.Error" Icon="@Icons.Material.Outlined.Delete" OnClick="@(() => OnExcluir(categoria.Item.Id))" />
+                            <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Visibility" Href="/category/visualizar" />
+                            <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" Href="/category/editar" />
+                            <MudIconButton Size="@Size.Small" Color="Color.Error" Icon="@Icons.Material.Outlined.Delete" OnClick="@(() => OnDelete(category.Item.Id))" />
                         </CellTemplate>
                     </TemplateColumn>
                 </Columns>
                 <PagerContent>
-                    <MudDataGridPager T="Categoria" />
+                    <MudDataGridPager T="Category" />
                 </PagerContent>
             </MudDataGrid>
         </MudCardContent>
@@ -46,13 +46,14 @@
 
 @code {
     private string title = "Listar Categorias";
-    private MudDataGrid<Categoria> dataGrid = null!;
+    private MudDataGrid<Category> dataGrid = null!;
     private string? searchString = null;
-    private async Task<GridData<Categoria>> ServerReload(GridState<Categoria> state)
-    {
-        var jsonObject = await categoriaService.GetAllAsync();
 
-        IEnumerable<Categoria> categorias = new List<Categoria>();
+    private async Task<GridData<Category>> ServerReload(GridState<Category> state)
+    {
+        var jsonObject = await _categoryService.GetAllAsync();
+
+        IEnumerable<Category> categoriesResult = new List<Category>();
         if (!string.IsNullOrEmpty(jsonObject))
         {
             var settings = new JsonSerializerSettings
@@ -61,11 +62,11 @@
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects,
                 Formatting = Formatting.Indented
             };
-            categorias = JsonConvert.DeserializeObject<IEnumerable<Categoria>>(jsonObject, settings);
+            categoriesResult = JsonConvert.DeserializeObject<IEnumerable<Category>>(jsonObject, settings);
         }
 
         //filtrar dados
-        var data = categorias.Where(x =>
+        categoriesResult = categoriesResult.Where(x =>
         {
             if (string.IsNullOrWhiteSpace(searchString))
                 return true;
@@ -75,7 +76,7 @@
                 return true;
             return false;
         });
-        var totalItems = data.Count();
+        var totalItems = categoriesResult.Count();
 
         //Ordenar dados
         var sortDefinition = state.SortDefinitions.FirstOrDefault();
@@ -83,23 +84,23 @@
         {
             switch (sortDefinition.SortBy)
             {
-                case nameof(Categoria.Id):
-                    data = data.OrderByDirection(
+                case nameof(Category.Id):
+                    categoriesResult = categoriesResult.OrderByDirection(
                         sortDefinition.Descending ? SortDirection.Descending : SortDirection.Ascending,
                         o => o.Id
                     );
                     break;
-                case nameof(Categoria.Name):
-                    data = data.OrderByDirection(
+                case nameof(Category.Name):
+                    categoriesResult = categoriesResult.OrderByDirection(
                         sortDefinition.Descending ? SortDirection.Descending : SortDirection.Ascending,
                         o => o.Name
                     );
                     break;
             }
         }
-        var pagedData = data.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
+        var pagedData = categoriesResult.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
 
-        return new GridData<Categoria>
+        return new GridData<Category>
         {
             TotalItems = totalItems,
             Items = pagedData
@@ -112,7 +113,7 @@
         return dataGrid.ReloadServerData();
     }
 
-    private async Task OnExcluir(Guid id)
+    private async Task OnDelete(Guid id)
     {
         Snackbar.Add($"Guid: {id}", Severity.Info);
     }

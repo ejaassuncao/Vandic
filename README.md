@@ -38,11 +38,11 @@
     - Imagem
     - Descrição
     - Preço
-    - CtgID (categoria)
+    - CtgId (categoria)
 
-- Categoria (CTG)
-    - CtgID
-    - Nome
+- Category (Ctg)
+    - CtgId
+    - CtgName
 
 - Pedido  (PPD)
     - PddID
