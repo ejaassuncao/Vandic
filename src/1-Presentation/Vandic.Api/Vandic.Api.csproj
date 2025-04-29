@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\3-Domain\Vandic.Domain\Vandic.Domain.csproj" />
+    <ProjectReference Include="..\..\3-Domain\Vandic.Domain\Vandic.Domain.csproj" />
   </ItemGroup>
 
 </Project>

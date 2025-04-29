@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;
-using Vandic.Infra.Data.Context;
+using Vandic.Data.efcore.Context;
 using Vandic.MudBlazorServer.Components;
 using Vandic.MudBlazorServer.Configurations;
 

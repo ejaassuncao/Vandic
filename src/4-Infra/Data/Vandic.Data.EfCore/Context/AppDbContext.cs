@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Vandic.Domain.Models;
 
-namespace Vandic.Infra.Data.Context
+namespace Vandic.Data.efcore.Context
 {
     public class AppDbContext :DbContext
     {

@@ -24,6 +24,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\3-Domain\Vandic.Domain\Vandic.Domain.csproj" />
-    <ProjectReference Include="..\..\4-Infra\Vandic.Infra.Data\Vandic.Infra.Data.csproj" />
+    <ProjectReference Include="..\..\4-Infra\Data\Vandic.Data.EfCore\Vandic.Data.EfCore.csproj" />
   </ItemGroup>
 </Project>
