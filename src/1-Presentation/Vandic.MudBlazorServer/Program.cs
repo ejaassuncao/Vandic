@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MudBlazor;
 using MudBlazor.Services;
 using MudBlazor.Translations;
 using Vandic.CrossCutting.Resources.Configurations;
 using Vandic.Data.efcore.Context;
 using Vandic.MudBlazorServer.Components;
-using Vandic.MudBlazorServer.Components.Resources;
 using Vandic.MudBlazorServer.Configurations;
 
 namespace Vandic.MudBlazorServer
@@ -30,9 +28,6 @@ namespace Vandic.MudBlazorServer
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
-
-           // builder.Services.AddTransient<MudLocalizer, MudLocalizationPtBr>();
-
             builder.Services.AddVandicServices(builder.Configuration);
             builder.Services.AddLocalization();
             builder.Services.AddVandicResources();
@@ -53,7 +48,7 @@ namespace Vandic.MudBlazorServer
 
             var supportedCultures = new[] { "en-US", "pt-BR", "es" };
             var localizationOptions = new RequestLocalizationOptions()
-                .SetDefaultCulture("pt-BR")
+                .SetDefaultCulture("es")
                 .AddSupportedCultures(supportedCultures)
                 .AddSupportedUICultures(supportedCultures);
 
