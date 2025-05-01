@@ -77,9 +77,9 @@
     - PesID (Cliente)
     - DataHora
     - Endereco de Entrega
-	- Status (Pedido em Processamento, Pagamento Realizado, Em Andamento,  Finalizado)
-	- PromocaoID
-	- IP - Pra recuperar um carrinho perdido
+    - Status (Pedido em Processamento, Pagamento Realizado, Em Andamento,  Finalizado)
+    - PromocaoId
+    - IP - Pra recuperar um carrinho perdido
 
 - ItensPedido (IPD)
     - IpdID
@@ -91,7 +91,7 @@
 	- Descrição
 	- DataInicio
  	- DataFim
-        - Desconto
+        - Desconto%
 
 ###  casos de uso
 - Permitir Gerenciar um usuário
