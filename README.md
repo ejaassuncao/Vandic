@@ -91,6 +91,7 @@
 	- Descrição
 	- DataInicio
  	- DataFim
+        - Desconto
 
 ###  casos de uso
 - Permitir Gerenciar um usuário
