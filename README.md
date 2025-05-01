@@ -32,12 +32,14 @@
 	  
 - PessoaEndereco (Pessoa pode possuir varios endereços)
 	  
-- Produtos (PRD)
+- Produto (PRD)
     - PrdID
     - Nome
     - Imagem
     - Descrição
-    - Preço
+    - PreçoCompra
+    - Preço Venda
+    - Margem Lucro
     - CtgId (categoria)
 
 - Category (Ctg)
