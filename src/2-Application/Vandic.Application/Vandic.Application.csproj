@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\3-Domain\Vandic.Domain\Vandic.Domain.csproj" />
+    <ProjectReference Include="..\..\4-Infra\CrossCutting\Vandic.CrossCutting.Resources\Vandic.CrossCutting.Resources.csproj" />
+    <ProjectReference Include="..\..\4-Infra\Data\Vandic.Data.EfCore\Vandic.Data.EfCore.csproj" />
+  </ItemGroup>
+
+</Project>

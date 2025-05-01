@@ -9,7 +9,5 @@ namespace Vandic.MudBlazorServer.Components.Services
         public CategoryService(HttpClient httpClient) : base(httpClient) 
         {           
         }
-       
-    
     }
 }

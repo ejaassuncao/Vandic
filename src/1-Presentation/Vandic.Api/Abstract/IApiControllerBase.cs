@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Vandic.Application.Abstracts;
 
 namespace Vandic.Api.Abstract
 {
     public interface IApiControllerBase
     {
-    
-        Task<IActionResult> GetAsync();
+        [HttpGet]
+        Task<IActionResult> GetAsync(FilterDto filter);
 
-     
+        [HttpPost]
         Task<IActionResult> PostAsync();
 
         [HttpPut]

@@ -16,7 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\3-Domain\Vandic.Domain\Vandic.Domain.csproj" />
+    <ProjectReference Include="..\..\2-Application\Vandic.Application\Vandic.Application.csproj" />
+    <ProjectReference Include="..\..\4-Infra\CrossCutting\Vandic.CrossCutting.Resources\Vandic.CrossCutting.Resources.csproj" />
   </ItemGroup>
 
 </Project>

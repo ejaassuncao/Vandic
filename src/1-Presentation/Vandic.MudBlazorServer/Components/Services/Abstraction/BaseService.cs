@@ -1,6 +1,10 @@
-﻿using System.Net.Http.Json;
+﻿using Azure;
+using Mono.TextTemplating;
+using MudBlazor;
+using System.Net.Http.Json;
 using System.Text;
-
+using Vandic.Application.Abstracts;
+using Vandic.CrossCutting.Resources.Configurations;
 namespace Vandic.MudBlazorServer.Components.Services.Abstraction
 {
     public abstract class BaseService : IBaseService
@@ -14,20 +18,39 @@ namespace Vandic.MudBlazorServer.Components.Services.Abstraction
             this._httpClient = httpClient;
         }
 
-        public async Task<string> GetAllAsync(CancellationToken cancelationToken = default)
+        public async Task<ResponseDto<T>> GetAllAsync<T>(FilterViewModel<T> param, CancellationToken cancellationToken = default)
         {
-            using HttpResponseMessage response = await _httpClient.GetAsync(_api, cancelationToken);
+            var filter = new FilterDto
+            {
+                Search = param.Search,
+                Page = param.State.Page,
+                OrderByName = param.State.SortDefinitions.FirstOrDefault()?.SortBy,
+                PageSize = param.State.PageSize,
+                OrderByDirection = param.State.SortDefinitions.FirstOrDefault()?.Descending == true ? EnumDirection.Descending : EnumDirection.Ascending
+            };
 
-            if (!response.IsSuccessStatusCode)  
-                return string.Empty;
+            var url = $"{_api}?Search={filter.Search}&OrderByName={filter.OrderByName}&OrderByDirection={filter.OrderByDirection}&Page={filter.Page}&PageSize={filter.PageSize}";
 
-            return await response.Content.ReadAsStringAsync();
+            using HttpResponseMessage response = await _httpClient.GetAsync(url, cancellationToken);
+
+            if (!response.IsSuccessStatusCode)
+                throw new Exception($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+
+            if (response.Content == null)
+                throw new Exception("Response content is null");
+
+            var result = await response.Content.ReadFromJsonAsync<ResponseDto<T>>(cancellationToken);
+
+            if (result == null) // Ensure result is not null to avoid CS8603
+                throw new Exception("Deserialization returned null");
+
+            return result;
         }
 
-        public async Task<string> Create(string objectJson, CancellationToken cancelationToken = default)
+        public async Task<string> Create(string objectJson, CancellationToken cancellationToken = default)
         {          
             var content = new StringContent(objectJson, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await _httpClient.PostAsync(_api, content, cancelationToken);
+            HttpResponseMessage response = await _httpClient.PostAsync(_api, content, cancellationToken);
 
             if (!response.IsSuccessStatusCode || response.Content == null)
             {
@@ -41,10 +64,10 @@ namespace Vandic.MudBlazorServer.Components.Services.Abstraction
             return string.Empty;
         }
                
-        public async Task<string> Update(Guid id, string objectJson, CancellationToken cancelationToken = default)
+        public async Task<string> Update(Guid id, string objectJson, CancellationToken cancellationToken = default)
         {
             var content = new StringContent(objectJson, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await _httpClient.PutAsync(_api, content, cancelationToken);
+            HttpResponseMessage response = await _httpClient.PutAsync(_api, content, cancellationToken);
 
             if (!response.IsSuccessStatusCode || response.Content == null)
             {
@@ -58,9 +81,9 @@ namespace Vandic.MudBlazorServer.Components.Services.Abstraction
             return string.Empty;
         }
 
-        public async Task<string> Delete(Guid id, CancellationToken cancelationToken = default)
+        public async Task<string> Delete(Guid id, CancellationToken cancellationToken = default)
         {            
-            HttpResponseMessage response = await _httpClient.DeleteAsync($"{_api}/{id}", cancelationToken);
+            HttpResponseMessage response = await _httpClient.DeleteAsync($"{_api}/{id}", cancellationToken);
 
             if (!response.IsSuccessStatusCode || response.Content == null)
             {

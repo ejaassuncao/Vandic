@@ -1,9 +1,12 @@
-﻿@page "/category"
+﻿@page "/Category"
 
 @using System.Net.Http.Json
 @using Newtonsoft.Json
-@using Vandic.Domain.Models
+@using Vandic.Application.Abstracts
+@using Vandic.Application.UserCases.Category
+@using Vandic.CrossCutting.Resources.Configurations
 @using Vandic.MudBlazorServer.Components.Services
+@using Vandic.MudBlazorServer.Components.Services.Abstraction
 @inject CategoryService CategoryService
 @inject ISnackbar Snackbar
 @inject ILocalizationService LocationService
@@ -16,7 +19,7 @@
             <MudText Typo="Typo.subtitle1" Class="my-2"><strong>@title</strong></MudText>
         </MudCardHeader>
         <MudCardContent>
-            <MudDataGrid @ref="dataGrid" T="Category" ServerData="ServerReload" Filterable="false" Dense="true" Hover="true">
+            <MudDataGrid @ref="dataGrid" T="CategoryDto" ServerData="ServerReload" Filterable="false" Dense="true" Hover="true">
                 <ToolBarContent>
                     <MudTextField T="string" ValueChanged="@(s => OnSearch(s))"
                                   Placeholder="@LocationService.GetString(Messages.Procurar)"
@@ -29,16 +32,16 @@
                 <Columns>
                     <PropertyColumn Property="x => x.Id" Title="@LocationService.GetString(Messages.Codigo)" />
                     <PropertyColumn Property="x => x.Name" Title="@LocationService.GetString(Messages.Nome)" />
-                    <TemplateColumn Hidden="false" CellClass="d-flex justify-end" Context="category">
+                    <TemplateColumn Hidden="false" CellClass="d-flex justify-end" Context="CategoryDto">
                         <CellTemplate>
                             <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Visibility" Href="/category/visualizar" />
                             <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" Href="/category/editar" />
-                            <MudIconButton Size="@Size.Small" Color="Color.Error" Icon="@Icons.Material.Outlined.Delete" OnClick="@(() => OnDelete(category.Item.Id))" />
+                            <MudIconButton Size="@Size.Small" Color="Color.Error" Icon="@Icons.Material.Outlined.Delete" OnClick="@(() => OnDelete(CategoryDto.Item.Id))" />
                         </CellTemplate>
                     </TemplateColumn>
                 </Columns>
                 <PagerContent>
-                    <MudDataGridPager T="Category" />
+                    <MudDataGridPager T="CategoryDto" />
                 </PagerContent>
             </MudDataGrid>
         </MudCardContent>
@@ -47,7 +50,7 @@
 
 @code {
     private string title = string.Empty;
-    private MudDataGrid<Category> dataGrid = null!;
+    private MudDataGrid<CategoryDto> dataGrid = null!;
     private string? searchString = null;
 
     protected override Task OnInitializedAsync()
@@ -58,61 +61,62 @@
     }
 
 
-    private async Task<GridData<Category>> ServerReload(GridState<Category> state)
+    private async Task<GridData<CategoryDto>> ServerReload(GridState<CategoryDto> state)
     {
-        var jsonObject = await CategoryService.GetAllAsync();
+        
+        var jsonObject = await CategoryService.GetAllAsync<CategoryDto>(new FilterViewModel<CategoryDto>(searchString, state));
 
-        IEnumerable<Category> categoriesResult = new List<Category>();
-        if (!string.IsNullOrEmpty(jsonObject))
-        {
-            var settings = new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                Formatting = Formatting.Indented
-            };
-            categoriesResult = JsonConvert.DeserializeObject<IEnumerable<Category>>(jsonObject, settings);
-        }
+        // IEnumerable<CategoryDto> categoriesResult = new List<CategoryDto>();
+        // if (!string.IsNullOrEmpty(jsonObject))
+        // {
+        //     var settings = new JsonSerializerSettings
+        //     {
+        //         TypeNameHandling = TypeNameHandling.Auto,
+        //         PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+        //         Formatting = Formatting.Indented
+        //     };
+        //     categoriesResult = JsonConvert.DeserializeObject<IEnumerable<CategoryDto>>(jsonObject, settings);
+        // }
 
-        //filtrar dados
-        categoriesResult = categoriesResult.Where(x =>
-        {
-            if (string.IsNullOrWhiteSpace(searchString))
-                return true;
-            if (x.Id.ToString().Contains(searchString, StringComparison.OrdinalIgnoreCase))
-                return true;
-            if (x.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-                return true;
-            return false;
-        });
-        var totalItems = categoriesResult.Count();
+        // //filtrar dados
+        // categoriesResult = categoriesResult.Where(x =>
+        // {
+        //     if (string.IsNullOrWhiteSpace(searchString))
+        //         return true;
+        //     if (x.Id.ToString().Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        //         return true;
+        //     if (x.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        //         return true;
+        //     return false;
+        // });
+        // var totalItems = categoriesResult.Count();
 
-        //Ordenar dados
-        var sortDefinition = state.SortDefinitions.FirstOrDefault();
-        if (sortDefinition != null)
-        {
-            switch (sortDefinition.SortBy)
-            {
-                case nameof(Category.Id):
-                    categoriesResult = categoriesResult.OrderByDirection(
-                        sortDefinition.Descending ? SortDirection.Descending : SortDirection.Ascending,
-                        o => o.Id
-                    );
-                    break;
-                case nameof(Category.Name):
-                    categoriesResult = categoriesResult.OrderByDirection(
-                        sortDefinition.Descending ? SortDirection.Descending : SortDirection.Ascending,
-                        o => o.Name
-                    );
-                    break;
-            }
-        }
-        var pagedData = categoriesResult.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
+        // //Ordenar dados
+        // var sortDefinition = state.SortDefinitions.FirstOrDefault();
+        // if (sortDefinition != null)
+        // {
+        //     switch (sortDefinition.SortBy)
+        //     {
+        //         case nameof(CategoryDto.Id):
+        //             categoriesResult = categoriesResult.OrderByDirection(
+        //                 sortDefinition.Descending ? SortDirection.Descending : SortDirection.Ascending,
+        //                 o => o.Id
+        //             );
+        //             break;
+        //         case nameof(CategoryDto.Name):
+        //             categoriesResult = categoriesResult.OrderByDirection(
+        //                 sortDefinition.Descending ? SortDirection.Descending : SortDirection.Ascending,
+        //                 o => o.Name
+        //             );
+        //             break;
+        //     }
+        // }
+        // var pagedData = categoriesResult.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
 
-        return new GridData<Category>
+        return new GridData<CategoryDto>
         {
-            TotalItems = totalItems,
-            Items = pagedData
+            TotalItems = jsonObject.TotalItems,
+            Items = jsonObject.Items
         };
     }
 
@@ -127,3 +131,5 @@
         Snackbar.Add($"Guid: {id}", Severity.Info);
     }
 }
+
+        

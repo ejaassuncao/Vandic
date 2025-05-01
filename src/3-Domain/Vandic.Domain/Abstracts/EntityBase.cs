@@ -2,23 +2,35 @@
 {
     public abstract class EntityBase
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; protected set; } = Guid.NewGuid();
 
-        public int InternalId { get; set; }
+        public int InternalId { get; protected set; }
 
-        public bool Excluido { get; set; }
+        public string CreatedBy { get; private set; } = string.Empty;
+        public string ModifiedBy { get; private set; } = string.Empty;
+        public string DeletedBy { get; private set; } = string.Empty;
 
-        public string CriadoPor { get; set; } = string.Empty;
+        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+        public DateTime? ModifiedAt { get; private set; }
+        public DateTime? DeletedAt { get; private set; }
 
-        public string AlteradoPor { get; set; } = string.Empty;
+        // Domain methods for managing state changes
+        public void MarkAsCreated(string user)
+        {
+            CreatedBy = user;
+            CreatedAt = DateTime.UtcNow;
+        }
 
-        public string ExcluidoPor { get; set; } = string.Empty;
-         
-        public DateTime DataInclusao { get; set; }
+        public void MarkAsModified(string user)
+        {
+            ModifiedBy = user;
+            ModifiedAt = DateTime.UtcNow;
+        }
 
-        public DateTime DataAlteracao { get; set; }
-
-        public DateTime DataExclusao { get; set; }
-
+        public void MarkAsDeleted(string user)
+        {          
+            DeletedBy = user;
+            DeletedAt = DateTime.UtcNow;
+        }
     }
 }
