@@ -96,8 +96,14 @@
 - Venda
 - Pedidoid
 - CodigoRastreio
-- Entragador
+- Entregador
 - Nº Nota
+
+
+
+- Loja
+
+
 
    
 ###  casos de uso
