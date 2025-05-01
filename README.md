@@ -23,35 +23,63 @@
 
 - Pessoa (ID)
     - PesID
-    - Nome
-	- Foto
+    - Tipo (PF, PJ)
+    - NomeRazao
+    - NomeFantasiaApelido
+    - Foto
     - Documento
     - Contato
     - Endereco
     - UsuID
 	  
 - PessoaEndereco (Pessoa pode possuir varios endereços)
-	  
-- Produtos (PRD)
+
+- Estoque * Conta Corrente entrada SaidaEstado
+    -id  
+    - ProdutoId
+    - QtdTotal
+    - PrecoMédio  
+    - DataEntrada
+
+- LancamentosEstoque **
+  -ID
+  - EstoqueId
+  - Status (Entrada/Saida)
+  - MotivoID  (Entrada-Compra;Entrada-Bonificação; Saida-Vendas; Saida-Quebra)
+  - DescricaoMotivoOutro
+  - Produto 
+  - Data
+  - Qtd
+  - Valor
+  - Nº Nota fiscal
+ 
+- Produto (PRD)
     - PrdID
-    - Nome
+    - Fornecedor
+    - Nome   
+    - CodBarra
     - Imagem
     - Descrição
-    - Preço
+    - PreçoCompra   
+    - Margem
+    - PreçoVenda
     - CtgId (categoria)
 
 - Category (Ctg)
     - CtgId
     - CtgName
+    - CtgDescription
+    - CtgMenuDescription
+    - CtRoot
 
 - Pedido  (PPD)
     - PddID
     - PesID (Cliente)
     - DataHora
     - Endereco de Entrega
-	- Status (Pedido em Processamento, Pagamento Realizado, Em Andamento,  Finalizado)
-	- PromocaoID
-	- IP - Pra recuperar um carrinho perdido
+    - Status (Carrinho, Processamendo Pagamento, Pagamento Realizado, EmissaoNota, Enviado, Finalizado)
+    - PromocaoId
+    - IP - Pra recuperar um carrinho perdido
 
 - ItensPedido (IPD)
     - IpdID
@@ -63,7 +91,21 @@
 	- Descrição
 	- DataInicio
  	- DataFim
+        - Desconto%
+   
+- Venda
+- Pedidoid
+- CodigoRastreio
+- Entregador
+- Nº Nota
 
+
+
+- Loja
+
+
+
+   
 ###  casos de uso
 - Permitir Gerenciar um usuário
 - Permitir Gerenciar Perfis e Regras
