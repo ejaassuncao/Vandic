@@ -34,24 +34,34 @@
 	  
 - PessoaEndereco (Pessoa pode possuir varios endereços)
 
-- Stoque * Conta Corrente entrada SaidaEstado
-  -id
-  -Status  (Entrada - Saida)
-  -ProdutoId
-  -Qtd 
-  -Fornedor (Pessoa) 
-  -dataEntrada
-   
+- Estoque * Conta Corrente entrada SaidaEstado
+    -id  
+    - ProdutoId
+    - QtdTotal
+    - PrecoMédio  
+    - DataEntrada
+
+- LancamentosEstoque **
+  -ID
+  - EstoqueId
+  - Status (Entrada/Saida)
+  - MotivoID  (Entrada-Compra;Entrada-Bonificação; Saida-Vendas; Saida-Quebra)
+  - DescricaoMotivoOutro
+  - Fornedor (Pessoa) 
+  - Data
+  - Qtd
+  - Valor
+  - Nº Nota fiscal
 
 - Produto (PRD)
     - PrdID
     - Nome
+    - Fornecedor
+    - CodBarra
     - Imagem
     - Descrição
-    - Preço
-    - Localizacao
-    - Margem    
-    - Qtd
+    - PreçoVenda
+    - Margem
     - CtgId (categoria)
 
 - Category (Ctg)
