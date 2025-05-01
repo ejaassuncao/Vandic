@@ -47,7 +47,7 @@
   - Status (Entrada/Saida)
   - MotivoID  (Entrada-Compra;Entrada-Bonificação; Saida-Vendas; Saida-Quebra)
   - DescricaoMotivoOutro
-  - Fornedor (Pessoa) 
+  - Produto 
   - Data
   - Qtd
   - Valor
