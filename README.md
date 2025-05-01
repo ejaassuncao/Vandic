@@ -55,8 +55,8 @@
 
 - Produto (PRD)
     - PrdID
-    - Nome
     - Fornecedor
+    - Nome   
     - CodBarra
     - Imagem
     - Descrição
