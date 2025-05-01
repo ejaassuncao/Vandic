@@ -40,11 +40,15 @@
     - PreçoCompra
     - Preço Venda
     - Margem Lucro
+    - Estoque
     - CtgId (categoria)
 
 - Category (Ctg)
     - CtgId
     - CtgName
+    - CtgDescription
+    - CtgMenuDescription
+    - CtRoot
 
 - Pedido  (PPD)
     - PddID
