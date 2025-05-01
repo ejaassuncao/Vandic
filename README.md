@@ -60,9 +60,9 @@
     - CodBarra
     - Imagem
     - Descrição
-    - PreçoCompra
-    - PreçoVenda
+    - PreçoCompra   
     - Margem
+    - PreçoVenda
     - CtgId (categoria)
 
 - Category (Ctg)
