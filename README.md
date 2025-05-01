@@ -23,24 +23,35 @@
 
 - Pessoa (ID)
     - PesID
-    - Nome
-	- Foto
+    - Tipo (PF, PJ)
+    - NomeRazao
+    - NomeFantasiaApelido
+    - Foto
     - Documento
     - Contato
     - Endereco
     - UsuID
 	  
 - PessoaEndereco (Pessoa pode possuir varios endereços)
-	  
+
+- Stoque * Conta Corrente entrada SaidaEstado
+  -id
+  -Status  (Entrada - Saida)
+  -ProdutoId
+  -Qtd 
+  -Fornedor (Pessoa) 
+  -dataEntrada
+   
+
 - Produto (PRD)
     - PrdID
     - Nome
     - Imagem
     - Descrição
-    - PreçoCompra
-    - Preço Venda
-    - Margem Lucro
-    - Estoque
+    - Preço
+    - Localizacao
+    - Margem    
+    - Qtd
     - CtgId (categoria)
 
 - Category (Ctg)
