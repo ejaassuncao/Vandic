@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
-using System.Text.Json.Nodes;
-using System.Xml;
 using Vandic.Api.Abstract;
 using Vandic.Application.Abstracts;
 using Vandic.Application.UserCases.Category;
@@ -48,8 +44,8 @@ namespace Vandic.Api.Controllers
             if (!string.IsNullOrEmpty(filter.Search))
             {
                 categoriesResult = categoriesResult.Where(x =>
-                               filter.Search.Contains(x.Id.ToString(), StringComparison.OrdinalIgnoreCase) ||
-                               filter.Search.Contains(x.Name, StringComparison.OrdinalIgnoreCase)
+                               x.Id.ToString().Contains(filter.Search, StringComparison.OrdinalIgnoreCase) ||
+                               x.Name.Contains(filter.Search, StringComparison.OrdinalIgnoreCase)
                 ).ToList();
             }
             //filtrar dados          
