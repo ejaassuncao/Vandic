@@ -62,56 +62,8 @@
 
 
     private async Task<GridData<CategoryDto>> ServerReload(GridState<CategoryDto> state)
-    {
-        
+    {        
         var jsonObject = await CategoryService.GetAllAsync(new FilterViewModel<CategoryDto>(searchString, state));
-
-        // IEnumerable<CategoryDto> categoriesResult = new List<CategoryDto>();
-        // if (!string.IsNullOrEmpty(jsonObject))
-        // {
-        //     var settings = new JsonSerializerSettings
-        //     {
-        //         TypeNameHandling = TypeNameHandling.Auto,
-        //         PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-        //         Formatting = Formatting.Indented
-        //     };
-        //     categoriesResult = JsonConvert.DeserializeObject<IEnumerable<CategoryDto>>(jsonObject, settings);
-        // }
-
-        // //filtrar dados
-        // categoriesResult = categoriesResult.Where(x =>
-        // {
-        //     if (string.IsNullOrWhiteSpace(searchString))
-        //         return true;
-        //     if (x.Id.ToString().Contains(searchString, StringComparison.OrdinalIgnoreCase))
-        //         return true;
-        //     if (x.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-        //         return true;
-        //     return false;
-        // });
-        // var totalItems = categoriesResult.Count();
-
-        // //Ordenar dados
-        // var sortDefinition = state.SortDefinitions.FirstOrDefault();
-        // if (sortDefinition != null)
-        // {
-        //     switch (sortDefinition.SortBy)
-        //     {
-        //         case nameof(CategoryDto.Id):
-        //             categoriesResult = categoriesResult.OrderByDirection(
-        //                 sortDefinition.Descending ? SortDirection.Descending : SortDirection.Ascending,
-        //                 o => o.Id
-        //             );
-        //             break;
-        //         case nameof(CategoryDto.Name):
-        //             categoriesResult = categoriesResult.OrderByDirection(
-        //                 sortDefinition.Descending ? SortDirection.Descending : SortDirection.Ascending,
-        //                 o => o.Name
-        //             );
-        //             break;
-        //     }
-        // }
-        // var pagedData = categoriesResult.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
 
         return new GridData<CategoryDto>
         {

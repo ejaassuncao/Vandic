@@ -8,7 +8,6 @@ namespace Vandic.MudBlazorServer.Components.Services.Abstraction
         protected abstract string _api { get; set; }
         protected readonly HttpClient _httpClient;
 
-
         protected BaseService(HttpClient httpClient)
         {          
             this._httpClient = httpClient;
@@ -89,7 +88,6 @@ namespace Vandic.MudBlazorServer.Components.Services.Abstraction
                     return await response.Content.ReadAsStringAsync();
                 }
             }
-
             return string.Empty;
         }
     }
