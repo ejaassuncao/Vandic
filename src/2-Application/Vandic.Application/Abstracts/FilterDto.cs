@@ -4,9 +4,9 @@ namespace Vandic.Application.Abstracts
 {
     public class FilterDto
     {  
-        public string Search { get; set; }
-        public string OrderByName { get; set; }
-        public EnumDirection OrderByDirection { get; set; }
+        public string? Search { get; set; }
+        public string? OrderByName { get; set; }
+        public EnumDirection OrderByDirection { get; set; } = EnumDirection.None;
         public int Page { get; set; }
         public int PageSize { get; set; }
 

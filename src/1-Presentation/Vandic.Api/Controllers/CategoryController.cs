@@ -18,7 +18,7 @@ namespace Vandic.Api.Controllers
     {
 
         [HttpGet]
-        public async Task<IActionResult> GetAsync([FromRoute] FilterDto filter)
+        public async Task<IActionResult> GetAsync([FromQuery] FilterDto filter)
         {
             await Task.Delay(2000); // Simula um atraso de 2 segundos para fins de demonstração
             List<CategoryDto> categoriesResult = await Task.FromResult(new List<CategoryDto>()
@@ -61,14 +61,14 @@ namespace Vandic.Api.Controllers
                 switch (filter.OrderByName)
                 {
                     case nameof(CategoryDto.Id):
-                        categoriesResult = categoriesResult.OrderByDirection(
-                            filter.OrderByDirection == EnumDirection.Descending ? EnumDirection.Descending : EnumDirection.Ascending,
-                            o => o.Id
+                        categoriesResult = categoriesResult.OrderByNaturalDirection(
+                            filter.OrderByDirection,
+                            o => o.Id.ToString()
                         ).ToList();
                         break;
                     case nameof(CategoryDto.Name):
-                        categoriesResult = categoriesResult.OrderByDirection(
-                           filter.OrderByDirection == EnumDirection.Descending ? EnumDirection.Descending : EnumDirection.Ascending,
+                        categoriesResult = categoriesResult.OrderByNaturalDirection(
+                           filter.OrderByDirection,
                            o => o.Name
                        ).ToList();
                         break;
@@ -76,7 +76,7 @@ namespace Vandic.Api.Controllers
             }
             var pagedData = categoriesResult.Skip(filter.Page * filter.PageSize).Take(filter.PageSize).ToArray();
 
-            return Ok(new ResponseDto<CategoryDto>(pagedData));
+            return Ok(new ResponseDto<CategoryDto>(pagedData, totalItems));
         }
 
         public Task<IActionResult> PostAsync()

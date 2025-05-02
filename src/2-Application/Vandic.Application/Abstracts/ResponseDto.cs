@@ -5,9 +5,13 @@
         public int TotalItems { get; set; }
         public IEnumerable<T> Items { get; set; } = Enumerable.Empty<T>();
 
-        public ResponseDto(IEnumerable<T> result)
+        public ResponseDto()
+        {            
+        }
+
+        public ResponseDto(IEnumerable<T> result, int count)
         {
-            TotalItems = result.Count();
+            TotalItems = count;
             Items = result;
         }
     }

@@ -8,5 +8,17 @@
                 ? source.OrderByDescending(keySelector)
                 : source.OrderBy(keySelector);
         }
+
+        public static IOrderedEnumerable<T> OrderByNaturalDirection<T>(
+        this IEnumerable<T> source,
+        EnumDirection direction,
+        Func<T, string> selector)
+        {
+            var comparer = new NaturalStringComparer<T>(selector);
+
+            return direction == EnumDirection.Descending
+                ? source.OrderByDescending(x => x, comparer)
+                : source.OrderBy(x => x, comparer);
+        }
     }
 }

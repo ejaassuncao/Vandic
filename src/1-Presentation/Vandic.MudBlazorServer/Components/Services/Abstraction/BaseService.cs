@@ -1,8 +1,4 @@
-﻿using Azure;
-using Mono.TextTemplating;
-using MudBlazor;
-using System.Net.Http.Json;
-using System.Text;
+﻿using System.Text;
 using Vandic.Application.Abstracts;
 using Vandic.CrossCutting.Resources.Configurations;
 namespace Vandic.MudBlazorServer.Components.Services.Abstraction
@@ -41,7 +37,7 @@ namespace Vandic.MudBlazorServer.Components.Services.Abstraction
 
             var result = await response.Content.ReadFromJsonAsync<ResponseDto<T>>(cancellationToken);
 
-            if (result == null) // Ensure result is not null to avoid CS8603
+            if (result == null)
                 throw new Exception("Deserialization returned null");
 
             return result;
