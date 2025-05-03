@@ -135,7 +135,23 @@ Gerando a migrations inicial para o banco de dados
 Add-Migration initial -Context AppDbContext  -StartupProject Vandic.Api
 
 ```
+
+Abra o arquivo gerado (ex: 20250502180000_initial.cs) e limpe os métodos Up() e Down(), assim:
 executando a migration no banco de dados
+
+```Csharp  
+protected override void Up(MigrationBuilder migrationBuilder)
+{
+    // vazio
+}
+
+protected override void Down(MigrationBuilder migrationBuilder)
+{
+    // vazio
+}
+```
+
+
 ```powershell
 Update-Database  -Context AppDbContext -StartupProject Vandic.Api
 
