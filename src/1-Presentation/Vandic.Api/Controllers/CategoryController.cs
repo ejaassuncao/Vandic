@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Vandic.Api.Abstract;
 using Vandic.Application.Abstracts;
-using Vandic.Application.UserCases.Category;
 using Vandic.CrossCutting.Resources.Configurations;
 using Vandic.Data.efcore.Context;
 using Vandic.Domain.Models;
@@ -54,11 +53,6 @@ namespace Vandic.Api.Controllers
                         break;
                 }
             }
-
-            //filtrar dados   
-            //var totalItems = categoryQuery.Count();
-
-           // categoryQuery = categoryQuery.Skip(filter.Page * filter.PageSize).Take(filter.PageSize);
 
             return Ok(new ResponseDto<Category>(categoryQuery, filter));
         }
