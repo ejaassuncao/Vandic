@@ -9,8 +9,11 @@
         {            
         }
 
-        public ResponseDto(IEnumerable<T> result, int count)
+        public ResponseDto(IQueryable<T> query, FilterDto filter)
         {
+            int count = query.Count();
+            var result = query.Skip(filter.Page * filter.PageSize).Take(filter.PageSize).ToList();
+
             TotalItems = count;
             Items = result;
         }
