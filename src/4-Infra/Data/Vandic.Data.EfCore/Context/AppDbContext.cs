@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Vandic.Domain.Models.Category;
+using Vandic.Domain.Models;
 
 namespace Vandic.Data.efcore.Context
 {

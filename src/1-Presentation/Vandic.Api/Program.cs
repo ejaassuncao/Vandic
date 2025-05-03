@@ -1,3 +1,4 @@
+using Vandic.Data.EfCore.Configurations;
 
 namespace Vandic.Api
 {
@@ -8,6 +9,8 @@ namespace Vandic.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Services.AddVandicDataEfCore(builder.Configuration);
 
             builder.Services.AddCors(options =>
             {

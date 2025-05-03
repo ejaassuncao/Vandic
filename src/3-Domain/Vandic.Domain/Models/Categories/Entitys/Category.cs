@@ -1,6 +1,6 @@
 ﻿using Vandic.Domain.Abstracts;
 
-namespace Vandic.Domain.Models.Category
+namespace Vandic.Domain.Models
 {
     public class Category : AggregateRoot
     {
@@ -9,8 +9,13 @@ namespace Vandic.Domain.Models.Category
         public string NameMenu { get; private set; }
         public Guid? CategoryRootId { get; private set; }
         public virtual Category CategoryRoot { get; private set; }
+        public virtual ICollection<Category> InverseCategoryRoot { get; set; } = new List<Category>();
 
-        public Category(string name, string nameMenu, Guid? categoryRootId = null, string? description = null)
+        public Category(
+            string name,
+            string nameMenu,
+            Guid? categoryRootId = null,
+            string? description = null)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Name is required.");

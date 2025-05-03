@@ -129,10 +129,16 @@
   <data name="Listar" xml:space="preserve">
     <value>Listar</value>
   </data>
+  <data name="NaoEncontrada" xml:space="preserve">
+    <value>Não encontrada</value>
+  </data>
   <data name="Nome" xml:space="preserve">
     <value>Nome</value>
   </data>
   <data name="Procurar" xml:space="preserve">
     <value>Procurar</value>
+  </data>
+  <data name="StringConexao" xml:space="preserve">
+    <value>String de conexão</value>
   </data>
 </root>

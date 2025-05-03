@@ -5,7 +5,7 @@ namespace Vandic.MudBlazorServer.Configurations
 {
     public static class InjetablesServices
     {
-        public static IServiceCollection AddVandicServices(this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddVandicBlazorServices(this IServiceCollection services, IConfiguration config)
         {        
             services.AddHttpClient<CategoryService>(client =>
             {
@@ -18,7 +18,6 @@ namespace Vandic.MudBlazorServer.Configurations
 
                 client.BaseAddress = uri;
             });
-
 
 
             return services;

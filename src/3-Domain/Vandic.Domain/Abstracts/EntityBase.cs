@@ -4,7 +4,7 @@
     {
         public Guid Id { get; protected set; } = Guid.NewGuid();
 
-        public int AlternateId { get; protected set; }
+        public int AlternativeId { get; protected set; }
 
         public string CreatedBy { get; private set; } = string.Empty;
         public string ModifiedBy { get; private set; } = string.Empty;

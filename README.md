@@ -120,3 +120,27 @@
 
 ### Usar o mudblazor para criação das tela
  Site: https://mudblazor.com/
+
+## Executar o scaffold para regerar os mapeamentos atualizados e atualizar o modelo das classes;
+
+sqlServer:
+```powershell
+Scaffold-DbContext "Name=ConnectionStrings:DefaultConnection" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Temp" -ContextDir "Temp" -Context  "AppDbContextTemp"  -Project "Vandic.Data.EfCore" -StartupProject "Vandic.Api"  -Force
+```
+
+
+## Criação das Migration 
+Gerando a migrations inicial para o banco de dados
+```powershell
+Add-Migration init -StartupProject Vandic.Api
+
+```
+executando a migration no banco de dados
+```powershell
+Update-Database -StartupProject Vandic.Api
+
+```
+para criação do script
+```powershell
+Script-Migration  -StartupProject Vandic.Api
+```

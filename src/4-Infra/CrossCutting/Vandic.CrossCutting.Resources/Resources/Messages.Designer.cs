@@ -97,6 +97,15 @@ namespace Vandic.CrossCutting.Resources.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Não encontrada.
+        /// </summary>
+        public static string NaoEncontrada {
+            get {
+                return ResourceManager.GetString("NaoEncontrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Nome.
         /// </summary>
         public static string Nome {
@@ -111,6 +120,15 @@ namespace Vandic.CrossCutting.Resources.Resources {
         public static string Procurar {
             get {
                 return ResourceManager.GetString("Procurar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a String de conexão.
+        /// </summary>
+        public static string StringConexao {
+            get {
+                return ResourceManager.GetString("StringConexao", resourceCulture);
             }
         }
     }
