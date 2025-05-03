@@ -132,15 +132,15 @@ Scaffold-DbContext "Name=ConnectionStrings:DefaultConnection" Microsoft.EntityFr
 ## Criação das Migration 
 Gerando a migrations inicial para o banco de dados
 ```powershell
-Add-Migration init -StartupProject Vandic.Api
+Add-Migration initial -Context AppDbContext  -StartupProject Vandic.Api
 
 ```
 executando a migration no banco de dados
 ```powershell
-Update-Database -StartupProject Vandic.Api
+Update-Database  -Context AppDbContext -StartupProject Vandic.Api
 
 ```
 para criação do script
 ```powershell
-Script-Migration  -StartupProject Vandic.Api
+Script-Migration -Context AppDbContext -StartupProject Vandic.Api
 ```

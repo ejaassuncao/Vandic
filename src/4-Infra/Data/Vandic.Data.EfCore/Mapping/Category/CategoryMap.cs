@@ -19,7 +19,8 @@ namespace Vandic.Data.EfCore.Mapping
                 .HasComment("Chave primária")
                 .HasColumnName("id");
             entity.Property(e => e.AlternativeId)
-                .ValueGeneratedOnAddOrUpdate()
+                .UseIdentityColumn() //adicionar auto incremento
+                .ValueGeneratedOnAddOrUpdate() //modificar
                 .HasComment("Auto Incremento")
                 .HasColumnName("alternative_id");
             entity.Property(e => e.CategoryRootId).HasColumnName("category_root_id");
@@ -66,7 +67,6 @@ namespace Vandic.Data.EfCore.Mapping
             entity.HasOne(d => d.CategoryRoot).WithMany(p=>p.InverseCategoryRoot)
                 .HasForeignKey(d => d.CategoryRootId)
                 .HasConstraintName("category_category_fk");
-
         }
     }
 }

@@ -7,8 +7,8 @@
         public int AlternativeId { get; protected set; }
 
         public string CreatedBy { get; private set; } = string.Empty;
-        public string ModifiedBy { get; private set; } = string.Empty;
-        public string DeletedBy { get; private set; } = string.Empty;
+        public string? ModifiedBy { get; private set; }
+        public string? DeletedBy { get; private set; }
 
         public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
         public DateTime? ModifiedAt { get; private set; }
