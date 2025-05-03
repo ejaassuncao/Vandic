@@ -7,8 +7,8 @@ namespace Vandic.Domain.Models.Category
         public string Name { get; private set; }
         public string? Description { get; private set; }
         public string NameMenu { get; private set; }
-        public Guid? CategoriaRootId { get; private set; }
-        public virtual Category CategoriaRoot { get; private set; }
+        public Guid? CategoryRootId { get; private set; }
+        public virtual Category CategoryRoot { get; private set; }
 
         public Category(string name, string nameMenu, Guid? categoryRootId = null, string? description = null)
         {
@@ -20,13 +20,13 @@ namespace Vandic.Domain.Models.Category
             Name = name;
             NameMenu = nameMenu;
             Description = description;
-            CategoriaRootId = categoryRootId;
+            CategoryRootId = categoryRootId;
         }
 
         public void SetCategoryRoot(Category root)
         {
-            CategoriaRoot = root ?? throw new ArgumentNullException(nameof(root));
-            CategoriaRootId = root.Id;
+            CategoryRoot = root ?? throw new ArgumentNullException(nameof(root));
+            CategoryRootId = root.Id;
         }
     }
 

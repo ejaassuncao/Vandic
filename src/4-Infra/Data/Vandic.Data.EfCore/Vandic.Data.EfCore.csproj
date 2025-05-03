@@ -14,4 +14,9 @@
     <ProjectReference Include="..\..\..\3-Domain\Vandic.Domain\Vandic.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mapping\Category\" />
+    <Folder Include="TempMap\" />
+  </ItemGroup>
+
 </Project>
