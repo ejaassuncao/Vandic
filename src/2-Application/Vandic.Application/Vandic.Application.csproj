@@ -8,8 +8,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\3-Domain\Vandic.Domain\Vandic.Domain.csproj" />
+    <ProjectReference Include="..\..\4-Infra\CrossCutting\Vandic.CrossCutting.Meditor\Vandic.CrossCutting.Meditor.csproj" />
     <ProjectReference Include="..\..\4-Infra\CrossCutting\Vandic.CrossCutting.Resources\Vandic.CrossCutting.Resources.csproj" />
     <ProjectReference Include="..\..\4-Infra\Data\Vandic.Data.EfCore\Vandic.Data.EfCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="UserCases\Category\Interfaces\" />
+    <Folder Include="UserCases\Category\Queries\" />
   </ItemGroup>
 
 </Project>
