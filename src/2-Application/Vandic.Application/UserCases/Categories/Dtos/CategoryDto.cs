@@ -1,4 +1,4 @@
-﻿namespace Vandic.Application.UserCases.Category
+﻿namespace Vandic.Application.UserCases.Categories
 {
     public class CategoryDto
     {

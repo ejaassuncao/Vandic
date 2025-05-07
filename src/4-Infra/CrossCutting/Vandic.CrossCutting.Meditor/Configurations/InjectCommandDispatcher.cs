@@ -1,19 +1,20 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Vandic.CrossCutting.Meditor.Interfaces;
 
-namespace Vandic.CrossCutting.Meditor
+namespace Vandic.CrossCutting.Meditor.Configurations
 {
-    public static class InjectDispacher
+    public static class InjectCommandDispatcher
     {
-        public static IServiceCollection AddDispatcher(this IServiceCollection services, Action<DispatcherConfiguration> configuration)
+        public static IServiceCollection AddDispatcher(this IServiceCollection services, Action<CommandDispatcherConfiguration> configuration)
         {
-            DispatcherConfiguration mediatRServiceConfiguration = new DispatcherConfiguration();
+            CommandDispatcherConfiguration mediatRServiceConfiguration = new CommandDispatcherConfiguration();
             configuration(mediatRServiceConfiguration);
 
 
             return services.AddDispatcher(mediatRServiceConfiguration);
         }
 
-        public static IServiceCollection AddDispatcher(this IServiceCollection services, DispatcherConfiguration configuration)
+        public static IServiceCollection AddDispatcher(this IServiceCollection services, CommandDispatcherConfiguration configuration)
         {
             if (configuration == null)
                 throw new ArgumentNullException(nameof(configuration));
@@ -41,7 +42,7 @@ namespace Vandic.CrossCutting.Meditor
             }
 
             // Registra o dispatcher em si
-            services.AddTransient<IDispatcher, Dispatcher>();
+            services.AddTransient<ICommandDispatcher, CommandDispatcher>();
 
             return services;
         }

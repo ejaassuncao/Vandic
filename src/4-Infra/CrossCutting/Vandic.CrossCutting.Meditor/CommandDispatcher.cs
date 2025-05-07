@@ -1,8 +1,12 @@
 ﻿using System.Reflection;
+using Vandic.CrossCutting.Meditor.Interfaces;
 
 namespace Vandic.CrossCutting.Meditor
 {
-    public class Dispatcher : IDispatcher
+    /// <summary>
+    /// CommandDispatcher
+    /// </summary>
+    public class CommandDispatcher : ICommandDispatcher
     {
         private readonly IServiceProvider _serviceProvider;
 
@@ -10,7 +14,7 @@ namespace Vandic.CrossCutting.Meditor
         /// Dispatcher
         /// </summary>
         /// <param name="serviceProvider"></param>
-        public Dispatcher(IServiceProvider serviceProvider)
+        public CommandDispatcher(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }

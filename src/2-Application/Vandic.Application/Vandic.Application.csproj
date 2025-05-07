@@ -14,8 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UserCases\Category\Interfaces\" />
-    <Folder Include="UserCases\Category\Queries\" />
+    <Folder Include="UserCases\Categories\Interfaces\" />
   </ItemGroup>
 
 </Project>

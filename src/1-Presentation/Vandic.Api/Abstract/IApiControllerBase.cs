@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vandic.Application.Abstracts;
+using Vandic.Application.UserCases.Categories.Commands;
 
 namespace Vandic.Api.Abstract
 {
@@ -9,12 +10,12 @@ namespace Vandic.Api.Abstract
         Task<IActionResult> GetAsync(FilterDto filter);
 
         [HttpPost]
-        Task<IActionResult> PostAsync();
+        Task<IActionResult> PostAsync([FromBody] CreateCommand createCommand, CancellationToken cancellationToken);
 
         [HttpPut]
-        Task<IActionResult> PutAsync();
+        Task<IActionResult> PutAsync([FromBody] UpdateCommand updateCommand, CancellationToken cancellationToken);
 
         [HttpDelete]
-        Task<IActionResult> DeleteAsync();
+        Task<IActionResult> DeleteAsync([FromQuery] Guid Id, CancellationToken cancellationToken);
     }
 }

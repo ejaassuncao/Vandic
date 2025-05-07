@@ -13,7 +13,7 @@ namespace Vandic.MudBlazorServer.Components.Services.Abstraction
             this._httpClient = httpClient;
         }
 
-        public async Task<ResponseDto<T>> GetAllAsync<T>(FilterViewModel<T> param, CancellationToken cancellationToken = default)
+        public async Task<ResponseQueryDto<T>> GetAllAsync<T>(FilterViewModel<T> param, CancellationToken cancellationToken = default)
         {
             var filter = new FilterDto
             {
@@ -34,7 +34,7 @@ namespace Vandic.MudBlazorServer.Components.Services.Abstraction
             if (response.Content == null)
                 throw new Exception("Response content is null");
 
-            var result = await response.Content.ReadFromJsonAsync<ResponseDto<T>>(cancellationToken);
+            var result = await response.Content.ReadFromJsonAsync<ResponseQueryDto<T>>(cancellationToken);
 
             if (result == null)
                 throw new Exception("Deserialization returned null");

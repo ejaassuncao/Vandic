@@ -1,6 +1,6 @@
-﻿namespace Vandic.CrossCutting.Meditor
+﻿namespace Vandic.CrossCutting.Meditor.Interfaces
 {
-    public interface IDispatcher
+    public interface ICommandDispatcher
     {
         Task<TResult> SendAsync<TResult>(IRequest<TResult> command, CancellationToken cancellationToken = default);
     }

@@ -1,15 +1,15 @@
 ﻿namespace Vandic.Application.Abstracts
 {
-    public class ResponseDto<T>
+    public class ResponseQueryDto<T>
     {
         public int TotalItems { get; set; }
         public IEnumerable<T> Items { get; set; } = Enumerable.Empty<T>();
 
-        public ResponseDto()
+        public ResponseQueryDto()
         {            
         }
 
-        public ResponseDto(IQueryable<T> query, FilterDto filter)
+        public ResponseQueryDto(IQueryable<T> query, FilterDto filter)
         {
             int count = query.Count();
             var result = query.Skip(filter.Page * filter.PageSize).Take(filter.PageSize).ToList();

@@ -1,4 +1,4 @@
-﻿namespace Vandic.CrossCutting.Meditor
+﻿namespace Vandic.CrossCutting.Meditor.Interfaces
 {
     public interface IRequestHandler<in TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
