@@ -1,4 +1,6 @@
-﻿namespace Vandic.Application.Abstracts
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Vandic.Application.Abstracts
 {
     public class ResponseQueryDto<T>
     {

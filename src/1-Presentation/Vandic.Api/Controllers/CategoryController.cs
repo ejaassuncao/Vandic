@@ -54,7 +54,7 @@ namespace Vandic.Api.Controllers
                 }
             }
 
-            return Ok(new ResponseQueryDto<Category>(categoryQuery, filter));
+            return Ok(await Task.FromResult(new ResponseQueryDto<Category>(categoryQuery, filter)));
         }
 
         [HttpPost]
