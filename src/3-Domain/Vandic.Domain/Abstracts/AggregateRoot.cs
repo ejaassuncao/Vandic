@@ -1,7 +1,18 @@
-﻿namespace Vandic.Domain.Abstracts
+﻿using Vandic.Application.Interfaces;
+
+namespace Vandic.Domain.Abstracts
 {
     public abstract class AggregateRoot : EntityBase
     {
-        // Future domain events or aggregate-specific logic can go here
+        private readonly List<IDomainEvent> _domainEvents = new();
+
+        public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents;
+
+        protected void AddDomainEvent(IDomainEvent domainEvent)
+        {
+            _domainEvents.Add(domainEvent);
+        }
+
+        public void ClearDomainEvents() => _domainEvents.Clear();
     }
 }

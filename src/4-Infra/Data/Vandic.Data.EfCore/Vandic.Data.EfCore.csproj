@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\3-Domain\Vandic.Domain\Vandic.Domain.csproj" />
+    <ProjectReference Include="..\..\CrossCutting\Vandic.CrossCutting.Meditor\Vandic.CrossCutting.Meditor.csproj" />
     <ProjectReference Include="..\..\CrossCutting\Vandic.CrossCutting.Resources\Vandic.CrossCutting.Resources.csproj" />
   </ItemGroup>
 

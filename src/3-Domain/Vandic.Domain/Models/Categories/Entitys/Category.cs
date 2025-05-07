@@ -1,4 +1,5 @@
 ﻿using Vandic.Domain.Abstracts;
+using static Vandic.Domain.Models.Categories.Events.CategoryEvent;
 
 namespace Vandic.Domain.Models
 {
@@ -14,8 +15,37 @@ namespace Vandic.Domain.Models
         public Category(
             string name,
             string nameMenu,
+            string modifiedBy,
             Guid? categoryRootId = null,
             string? description = null)
+        {
+            SetProperties(name, nameMenu, categoryRootId, description, modifiedBy);
+            AddDomainEvent(new CategoryCreatedEvent(this.Id, modifiedBy));
+        }
+
+        public void Update(string name,
+            string nameMenu,
+            string modifiedBy,
+            Guid? categoryRootId = null,
+            string? description = null)
+        {
+
+            SetProperties(name, nameMenu, categoryRootId, description, modifiedBy);
+            AddDomainEvent(new CategoryUpdatedEvent(this.Id, modifiedBy));
+        }
+
+        public void UpdateCategoryRoot(Category categoryRoot)
+        {
+            if (categoryRoot == null) throw new ArgumentNullException(nameof(categoryRoot));
+
+            if (categoryRoot != null && categoryRoot.Id == this.Id)
+                throw new InvalidOperationException("Uma categoria não pode ser root dela mesma.");
+
+            CategoryRoot = categoryRoot!;
+            CategoryRootId = categoryRoot!.Id;
+        }
+
+        private void SetProperties(string name, string nameMenu, Guid? categoryRootId, string? description, string modifiedBy)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Name is required.");
@@ -26,34 +56,7 @@ namespace Vandic.Domain.Models
             NameMenu = string.IsNullOrEmpty(nameMenu) ? name : nameMenu;
             Description = description;
             CategoryRootId = categoryRootId;
-        }
-
-        public void UpdateName(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Name is required.");
-
-            Name = name;
-        }
-
-        public void UpdateMenuName(string nameMenu)
-        {
-            if (string.IsNullOrWhiteSpace(nameMenu))
-                throw new ArgumentException("NameMenu is required.");
-
-            NameMenu = nameMenu;
-        }
-
-        public void UpdateDescription(string description)
-        {
-            Description = string.IsNullOrWhiteSpace(description) ? null : description;
-        }
-
-        public void UpdateCategoryRoot(Category root)
-        {
-            CategoryRoot = root ?? throw new ArgumentNullException(nameof(root));
-            CategoryRootId = root.Id;
+            MarkAsModified(modifiedBy);
         }
     }
-
 }

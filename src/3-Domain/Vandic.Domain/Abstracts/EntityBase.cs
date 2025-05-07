@@ -15,19 +15,19 @@
         public DateTime? DeletedAt { get; private set; }
 
         // Domain methods for managing state changes
-        public void MarkAsCreated(string user)
+        protected void MarkAsCreated(string user)
         {
             CreatedBy = user;
             CreatedAt = DateTime.UtcNow;
         }
 
-        public void MarkAsModified(string user)
+        protected void MarkAsModified(string user)
         {
             ModifiedBy = user;
             ModifiedAt = DateTime.UtcNow;
         }
 
-        public void MarkAsDeleted(string user)
+        protected void MarkAsDeleted(string user)
         {          
             DeletedBy = user;
             DeletedAt = DateTime.UtcNow;

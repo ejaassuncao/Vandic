@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vandic.Domain.Models.Categories.Events
+namespace Vandic.Application.Events
 {
-    internal class CategoryCreateEvent
+    public class SendEmailService
     {
     }
 }

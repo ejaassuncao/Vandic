@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 using Vandic.CrossCutting.Meditor.Interfaces;
 
 namespace Vandic.CrossCutting.Meditor.Configurations
@@ -10,7 +11,6 @@ namespace Vandic.CrossCutting.Meditor.Configurations
             CommandDispatcherConfiguration mediatRServiceConfiguration = new CommandDispatcherConfiguration();
             configuration(mediatRServiceConfiguration);
 
-
             return services.AddDispatcher(mediatRServiceConfiguration);
         }
 
@@ -20,31 +20,35 @@ namespace Vandic.CrossCutting.Meditor.Configurations
                 throw new ArgumentNullException(nameof(configuration));
 
             if (!configuration.AssembliesToRegister.Any())
-            {
                 throw new ArgumentException("No assemblies found to scan. Supply at least one assembly to scan for handlers.");
-            }
 
             var assemblies = configuration.AssembliesToRegister.Distinct().ToArray();
 
-            foreach (var assembly in assemblies)
-            {
-                var handlerTypes = assembly.GetTypes()
-                    .Where(t => !t.IsAbstract && !t.IsInterface)
-                    .SelectMany(t =>
-                        t.GetInterfaces()
-                         .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IRequestHandler<,>))
-                         .Select(i => new { HandlerInterface = i, Implementation = t }));
+            RegisterHandlers(services, assemblies, typeof(IRequestHandler<,>));
+            RegisterHandlers(services, assemblies, typeof(INotificationHandler<>));
 
-                foreach (var handler in handlerTypes)
-                {
-                    services.AddTransient(handler.HandlerInterface, handler.Implementation);
-                }
-            }
-
-            // Registra o dispatcher em si
+            // Registra o dispatcher principal
             services.AddTransient<ICommandDispatcher, CommandDispatcher>();
 
             return services;
+        }
+
+        private static void RegisterHandlers(IServiceCollection services, Assembly[] assemblies, Type handlerInterfaceType)
+        {
+            foreach (var assembly in assemblies)
+            {
+                var handlerTypes = assembly.GetTypes()
+                    .Where(t => t.IsClass && !t.IsAbstract)
+                    .SelectMany(t => t.GetInterfaces()
+                        .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == handlerInterfaceType)
+                        .Select(i => new { Interface = i, Implementation = t }))
+                    .Distinct(); // evita duplicações
+
+                foreach (var handler in handlerTypes)
+                {
+                    services.AddTransient(handler.Interface, handler.Implementation);
+                }
+            }
         }
     }
 }

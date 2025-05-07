@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vandic.Domain.Models.Categories.Events
+namespace Vandic.CrossCutting.Meditor.Interfaces
 {
-    public class CategoryDeleteEvent
+    public interface INotification
     {
     }
 }

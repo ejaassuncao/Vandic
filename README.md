@@ -160,3 +160,13 @@ para criação do script
 ```powershell
 Script-Migration -Context AppDbContext -StartupProject Vandic.Api
 ```
+
+
+## Padrões de projeto
+-  DDD (Domain Driven Design)
+ - CQRS (Command Query Responsibility Segregation)
+ - WebApi
+ - BlazorServer And BlazorWebAssembly
+ - CrossCutting Concerns (Autenticação, Autorização, Log, Cache, Exception Handling, Validação de Dados, etc.)
+ - Serviços de Aplicação (Application Services)
+ - Event Sourcing Notifications

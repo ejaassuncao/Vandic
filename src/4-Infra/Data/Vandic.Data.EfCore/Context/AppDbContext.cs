@@ -1,12 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Vandic.Domain.Models;
+using Vandic.CrossCutting.Meditor.Interfaces;
+using Vandic.Domain.Abstracts;
 
 namespace Vandic.Data.efcore.Context
 {
-    public class AppDbContext :DbContext
+    public partial class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        private readonly ICommandDispatcher _dispacher;
+
+        public AppDbContext(DbContextOptions<AppDbContext> options, ICommandDispatcher dispacher) : base(options)
         {
+            this._dispacher = dispacher;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -15,6 +19,26 @@ namespace Vandic.Data.efcore.Context
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Category> Categories { get; set; } = null!;
-    } 
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var domainEvents = ChangeTracker.Entries<AggregateRoot>()
+                .SelectMany(x => x.Entity.DomainEvents)
+                .ToList();
+
+            var result = await base.SaveChangesAsync(cancellationToken);
+
+            foreach (var domainEvent in domainEvents)
+            {
+                await _dispacher.Publish((INotification)domainEvent, cancellationToken);
+            }
+
+            // Limpa os eventos depois de publicar
+            ChangeTracker.Entries<AggregateRoot>()
+                .ToList()
+                .ForEach(e => e.Entity.ClearDomainEvents());
+
+            return result;
+        }
+
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 using Vandic.CrossCutting.Meditor.Interfaces;
 
 namespace Vandic.CrossCutting.Meditor
@@ -53,5 +54,42 @@ namespace Vandic.CrossCutting.Meditor
                 throw ex.InnerException ?? ex;
             }
         }
+
+        /// <summary>
+        /// Publish
+        /// </summary>
+        /// <param name="notification"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public async Task Publish(INotification notification, CancellationToken cancellationToken = default)
+        {
+            if (notification == null)
+                throw new ArgumentNullException(nameof(notification));
+
+            var notificationType = notification.GetType();
+            var handlerType = typeof(INotificationHandler<>).MakeGenericType(notificationType);
+
+            var handlers = _serviceProvider.GetServices(handlerType);
+
+            if (handlers == null || !handlers.Any())
+                return;
+
+            var handleMethod = handlerType.GetMethod("Handle");
+
+            foreach (var handler in handlers)
+            {
+                try
+                {
+                    var task = (Task)handleMethod.Invoke(handler, new object[] { notification, cancellationToken });
+                    await task.ConfigureAwait(false);
+                }
+                catch (TargetInvocationException ex)
+                {
+                    throw ex.InnerException ?? ex;
+                }
+            }
         }
+
+    }
 }
