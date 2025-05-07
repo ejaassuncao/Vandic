@@ -29,12 +29,21 @@ namespace Vandic.Api
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
+
+            //local do logs: C:\DES\EWA\Vandic\src\1-Presentation\Vandic.Api\bin\Debug\net9.0\Logs\Development
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
+            var logPath = Path.Combine(AppContext.BaseDirectory, "Logs", environment, "log-.txt");
             builder.Host.UseSerilog((context, services, configuration) =>
             {
                 configuration
                     .ReadFrom.Configuration(context.Configuration)
                     .ReadFrom.Services(services)
-                    .Enrich.FromLogContext();
+                    .Enrich.FromLogContext()
+                    .WriteTo.File(
+                    path: logPath,
+                    rollingInterval: RollingInterval.Day,
+                    outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}"
+                 );
             });
 
 
