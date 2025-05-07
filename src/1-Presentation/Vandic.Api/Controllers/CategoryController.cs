@@ -1,9 +1,5 @@
-﻿using Azure;
-using Azure.Core;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Threading;
-using System.Windows.Input;
 using Vandic.Api.Abstract;
 using Vandic.Application.Abstracts;
 using Vandic.Application.UserCases.Categories.Commands;
@@ -11,7 +7,6 @@ using Vandic.CrossCutting.Meditor.Interfaces;
 using Vandic.CrossCutting.Resources.Configurations;
 using Vandic.Data.efcore.Context;
 using Vandic.Domain.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
