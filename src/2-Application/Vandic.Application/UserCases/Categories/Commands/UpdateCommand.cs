@@ -8,10 +8,11 @@ namespace Vandic.Application.UserCases.Categories.Commands
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
 
-        public string NameMenu { get; set; }
+        public string NameMenu { get; set; } = string.Empty;
 
         public Guid? CategoryRootId { get; set; }
-        public string ModifiedBy { get; set; }
+
+        public string ModifiedBy { get; set; } = string.Empty;
     }
 
 }

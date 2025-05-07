@@ -1,4 +1,4 @@
-﻿namespace Vandic.Domain.Models.Categories
+﻿namespace Vandic.Domain.Models.Categories.Interfaces
 {
     public interface ICategoryRepository
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Vandic.Domain.Models;
+using Vandic.Domain.Models.Categories.Entities;
 
 namespace Vandic.Data.EfCore.Mapping
 {

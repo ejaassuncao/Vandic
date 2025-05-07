@@ -7,6 +7,7 @@ using Vandic.CrossCutting.Meditor.Interfaces;
 using Vandic.CrossCutting.Resources.Configurations;
 using Vandic.Data.efcore.Context;
 using Vandic.Domain.Models;
+using Vandic.Domain.Models.Categories.Entities;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

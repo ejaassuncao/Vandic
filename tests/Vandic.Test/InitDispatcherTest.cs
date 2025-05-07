@@ -2,13 +2,15 @@
 using System.Reflection;
 using Vandic.Application.UserCases.Categories.Queries;
 using Vandic.CrossCutting.Meditor.Configurations;
+using static Vandic.Application.UserCases.Categories.Events.CategoryAppEvent;
 
 namespace Vandic.Test
 {
     public class InitDispatcherTest
     {
-        [Fact]         
-        public void Initial()
+        private readonly ControllerDispatcherTest controllerDispatcherTest = null;
+
+        public InitDispatcherTest()
         {
             // Configura um provider com o handler necessário
             var services = new ServiceCollection();
@@ -18,11 +20,23 @@ namespace Vandic.Test
 
             var serviceProvider = services.BuildServiceProvider();
 
-            ControllerDispatcherTest dispatcherTest = serviceProvider.GetService<ControllerDispatcherTest>();
-            var result = dispatcherTest.ListCategoria(new ListCategoryCommand()).Result;
+            controllerDispatcherTest = serviceProvider.GetService<ControllerDispatcherTest>();
+        }
 
 
+        [Fact]         
+        public  async Task ListCategoriaTest()
+        {         
+            var result = await controllerDispatcherTest.ListCategoria(new ListCategoryCommand());
             Assert.Equal("Executou o Handle", result);
+        }
+
+
+        [Fact]
+        public async Task PublicarMsgCategoria()
+        {
+            await controllerDispatcherTest.PublicarMsgCategoria(new SendEmailEvent());
+            Assert.True(true);
         }
     }
 }

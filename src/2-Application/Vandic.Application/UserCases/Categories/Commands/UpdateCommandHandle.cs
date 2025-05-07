@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Vandic.Application.Abstracts;
 using Vandic.CrossCutting.Meditor.Interfaces;
 using Vandic.Data.efcore.Context;
+using Vandic.Domain.Enums;
 using static Vandic.Application.UserCases.Categories.Events.CategoryAppEvent;
 
 namespace Vandic.Application.UserCases.Categories.Commands
@@ -25,7 +26,7 @@ namespace Vandic.Application.UserCases.Categories.Commands
                 if (category == null)
                     return ResultCommand<bool>.Fail($"Categoria com Id {request.Id} não encontrada.");
 
-                category.Update(request.Name, request.NameMenu, request.ModifiedBy,  request.CategoryRootId, request.Description);
+                category.Update(request.Name, request.NameMenu, request.ModifiedBy,  request.Description, request.CategoryRootId);
                               
                 var success = await _appDbContext.SaveChangesAsync(cancellationToken) > 0;
 
@@ -33,10 +34,10 @@ namespace Vandic.Application.UserCases.Categories.Commands
                 if (success)
                 {
                     // Evento 1: Log/Auditoria
-                    await _commandDispatcher.Publish(new NotifyUpdatedAppEvent(category.Id, request.ModifiedBy));
+                    await _commandDispatcher.PublishAsync(new NotifyLogAppEvent(category.Id, request.ModifiedBy, EnumStatus.Updated));
 
                     // Evento 2: Envio de e-mail
-                    await _commandDispatcher.Publish(new SendUpdatedEmailEvent(category.Id, request.Name));
+                    await _commandDispatcher.PublishAsync(new SendEmailEvent(category.Id, request.Name));
                 }
 
 

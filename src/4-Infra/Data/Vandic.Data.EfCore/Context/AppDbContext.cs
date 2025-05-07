@@ -29,7 +29,7 @@ namespace Vandic.Data.efcore.Context
 
             foreach (var domainEvent in domainEvents)
             {
-                await _dispacher.Publish((INotification)domainEvent, cancellationToken);
+                await _dispacher.PublishAsync((INotification)domainEvent, cancellationToken);
             }
 
             // Limpa os eventos depois de publicar

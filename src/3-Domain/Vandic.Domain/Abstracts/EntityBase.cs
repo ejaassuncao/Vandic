@@ -1,4 +1,7 @@
-﻿namespace Vandic.Domain.Abstracts
+﻿using System.Xml.Linq;
+using Vandic.Domain.Exceptions;
+
+namespace Vandic.Domain.Abstracts
 {
     public abstract class EntityBase
     {
@@ -17,18 +20,27 @@
         // Domain methods for managing state changes
         protected void MarkAsCreated(string user)
         {
+            if (string.IsNullOrWhiteSpace(user))
+                throw new DomainException("CreatedBy is required.");
+
             CreatedBy = user;
             CreatedAt = DateTime.UtcNow;
         }
 
-        protected void MarkAsModified(string user)
+        protected void MarkAsModified(string? user)
         {
+            if (string.IsNullOrWhiteSpace(user))
+                throw new DomainException("ModifiedBy is required.");
+
             ModifiedBy = user;
             ModifiedAt = DateTime.UtcNow;
         }
 
-        protected void MarkAsDeleted(string user)
-        {          
+        public void MarkAsDeleted(string? user)
+        {
+            if (string.IsNullOrWhiteSpace(user))
+                throw new DomainException("DeletedBy is required.");
+
             DeletedBy = user;
             DeletedAt = DateTime.UtcNow;
         }

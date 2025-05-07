@@ -62,7 +62,7 @@ namespace Vandic.CrossCutting.Meditor
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public async Task Publish(INotification notification, CancellationToken cancellationToken = default)
+        public async Task PublishAsync(INotification notification, CancellationToken cancellationToken = default)
         {
             if (notification == null)
                 throw new ArgumentNullException(nameof(notification));

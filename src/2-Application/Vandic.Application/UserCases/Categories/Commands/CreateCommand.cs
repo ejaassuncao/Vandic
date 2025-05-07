@@ -7,9 +7,9 @@ namespace Vandic.Application.UserCases.Categories.Commands
     {
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public string NameMenu { get; internal set; }
-        public Guid? CategoryRootId { get; internal set; }
-        public string ModifiedBy { get; set; }
+        public string NameMenu { get;  set; } = string.Empty;
+        public Guid? CategoryRootId { get; set; }
+        public string CreatedBy { get; set; } = string.Empty;
     }
 
 }

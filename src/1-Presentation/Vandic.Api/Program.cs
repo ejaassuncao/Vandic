@@ -1,3 +1,5 @@
+using Serilog;
+using Vandic.Api.Middleware;
 using Vandic.Data.EfCore.Configurations;
 
 namespace Vandic.Api
@@ -9,9 +11,7 @@ namespace Vandic.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddVandicDataEfCore(builder.Configuration);
-
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
@@ -23,10 +23,18 @@ namespace Vandic.Api
                         .AllowAnyHeader();
                     });
             });
-
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+
+            builder.Host.UseSerilog((context, services, configuration) =>
+            {
+                configuration
+                    .ReadFrom.Configuration(context.Configuration)
+                    .ReadFrom.Services(services)
+                    .Enrich.FromLogContext();
+            });
+
 
             var app = builder.Build();
 
@@ -36,9 +44,11 @@ namespace Vandic.Api
                 app.MapOpenApi();
             }
 
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+
             app.UseHttpsRedirection();
 
-           app.UseAuthorization();
+            app.UseAuthorization();
 
 
             app.MapControllers();

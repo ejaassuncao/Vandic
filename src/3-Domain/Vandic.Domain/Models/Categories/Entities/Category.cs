@@ -1,7 +1,8 @@
 ﻿using Vandic.Domain.Abstracts;
+using Vandic.Domain.Exceptions;
 using static Vandic.Domain.Models.Categories.Events.CategoryEvent;
 
-namespace Vandic.Domain.Models
+namespace Vandic.Domain.Models.Categories.Entities
 {
     public class Category : AggregateRoot
     {
@@ -15,48 +16,46 @@ namespace Vandic.Domain.Models
         public Category(
             string name,
             string nameMenu,
-            string modifiedBy,
-            Guid? categoryRootId = null,
-            string? description = null)
+            string createddBy,
+            string? description = null,
+            Guid? categoryRootId = null)
         {
-            SetProperties(name, nameMenu, categoryRootId, description, modifiedBy);
-            AddDomainEvent(new CategoryCreatedEvent(this.Id, modifiedBy));
+            SetProperties(name, nameMenu, categoryRootId, description);
+            MarkAsCreated(createddBy);
+            AddDomainEvent(new CategoryCreatedEvent(this.Id, createddBy));
         }
 
         public void Update(string name,
             string nameMenu,
             string modifiedBy,
-            Guid? categoryRootId = null,
-            string? description = null)
+            string? description = null,
+            Guid? categoryRootId = null)
         {
-
-            SetProperties(name, nameMenu, categoryRootId, description, modifiedBy);
+            SetProperties(name, nameMenu, categoryRootId, description);
+            MarkAsModified(modifiedBy);
             AddDomainEvent(new CategoryUpdatedEvent(this.Id, modifiedBy));
         }
 
         public void UpdateCategoryRoot(Category categoryRoot)
         {
-            if (categoryRoot == null) throw new ArgumentNullException(nameof(categoryRoot));
+            if (categoryRoot == null) throw new DomainException(nameof(categoryRoot));
 
             if (categoryRoot != null && categoryRoot.Id == this.Id)
-                throw new InvalidOperationException("Uma categoria não pode ser root dela mesma.");
+                throw new DomainException("Uma categoria não pode ser root dela mesma.");
 
             CategoryRoot = categoryRoot!;
             CategoryRootId = categoryRoot!.Id;
         }
 
-        private void SetProperties(string name, string nameMenu, Guid? categoryRootId, string? description, string modifiedBy)
+        private void SetProperties(string name, string nameMenu, Guid? categoryRootId, string? description)
         {
             if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Name is required.");
-            if (string.IsNullOrWhiteSpace(nameMenu))
-                throw new ArgumentException("NameMenu is required.");
-
+                throw new DomainException("Name is required.");
+         
             Name = name;
             NameMenu = string.IsNullOrEmpty(nameMenu) ? name : nameMenu;
             Description = description;
-            CategoryRootId = categoryRootId;
-            MarkAsModified(modifiedBy);
+            CategoryRootId = categoryRootId;           
         }
     }
 }

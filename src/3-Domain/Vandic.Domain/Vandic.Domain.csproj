@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Categories\Enums\" />
+    <Folder Include="Models\Categories\Specifications\" />
+    <Folder Include="ValueObjects\" />
+  </ItemGroup>
+
 </Project>
