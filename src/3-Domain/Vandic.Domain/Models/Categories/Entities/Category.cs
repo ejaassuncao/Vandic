@@ -13,6 +13,11 @@ namespace Vandic.Domain.Models.Categories.Entities
         public virtual Category CategoryRoot { get; private set; }
         public virtual ICollection<Category> InverseCategoryRoot { get; private set; } = new List<Category>();
 
+        public Category()
+        {
+            
+        }
+
         public Category(
             string name,
             string nameMenu,

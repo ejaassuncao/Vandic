@@ -6,7 +6,7 @@ using Vandic.Data.efcore.Context;
 
 namespace Vandic.Data.EfCore.Configurations
 {
-    public static class InjetablesServices
+    public static class InjetablesDataEfCore
     {
         public static IServiceCollection AddVandicDataEfCore(this IServiceCollection services, IConfiguration config)
         {

@@ -1,5 +1,6 @@
 using Serilog;
 using Vandic.Api.Middleware;
+using Vandic.Application.Configurations;
 using Vandic.Data.EfCore.Configurations;
 
 namespace Vandic.Api
@@ -12,6 +13,7 @@ namespace Vandic.Api
 
             // Add services to the container.
             builder.Services.AddVandicDataEfCore(builder.Configuration);
+            builder.Services.AddVandicApplication(builder.Configuration);
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
