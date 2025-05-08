@@ -91,5 +91,35 @@ namespace Vandic.CrossCutting.Meditor
             }
         }
 
+     
+        public async Task PublishAsync<T>(T events, CancellationToken cancellationToken = default)
+        {
+            if (events == null)
+                throw new ArgumentNullException(nameof(events));
+
+            var eventsType = events.GetType();
+            var handlerType = typeof(IEventHandler<>).MakeGenericType(eventsType);
+
+            var handlers = _serviceProvider.GetServices(handlerType);
+
+            if (handlers == null || !handlers.Any())
+                return;
+
+            var handleMethod = handlerType.GetMethod("Handle");
+
+            foreach (var handler in handlers)
+            {
+                try
+                {
+                    var task = (Task)handleMethod.Invoke(handler, new object[] { events, cancellationToken });
+                    await task.ConfigureAwait(false);
+                }
+                catch (TargetInvocationException ex)
+                {
+                    throw ex.InnerException ?? ex;
+                }
+            }
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Vandic.CrossCutting.Meditor.Interfaces;
 using static Vandic.Application.UserCases.Categories.Events.CategoryAppEvent;
+using static Vandic.Domain.Models.Categories.Events.CategoryEvent;
 
 namespace Vandic.Application.UserCases.Categories.Events
 {
@@ -7,8 +8,8 @@ namespace Vandic.Application.UserCases.Categories.Events
     {
 
         public class NotifyCategoryUpdatedAppEventHandle : INotificationHandler<NotifyLogAppEvent>
-        {
-            public async Task HandleAsync(NotifyLogAppEvent notification, CancellationToken cancellationToken)
+        {           
+            public Task HandleAsync(NotifyLogAppEvent notification, CancellationToken cancellationToken)
             {
                 //todo: gerar log de auditoria
                 throw new NotImplementedException();

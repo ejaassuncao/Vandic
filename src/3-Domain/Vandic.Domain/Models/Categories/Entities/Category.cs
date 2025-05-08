@@ -17,7 +17,6 @@ namespace Vandic.Domain.Models.Categories.Entities
         {
             
         }
-
         public Category(
             string name,
             string nameMenu,

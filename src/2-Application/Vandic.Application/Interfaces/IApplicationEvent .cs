@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Vandic.CrossCutting.Meditor.Interfaces;
+﻿using Vandic.CrossCutting.Meditor.Interfaces;
 
 namespace Vandic.Application.Interfaces
 {

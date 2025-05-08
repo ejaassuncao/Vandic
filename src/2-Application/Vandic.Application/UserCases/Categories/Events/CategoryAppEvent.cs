@@ -4,16 +4,15 @@ using Vandic.Domain.Enums;
 namespace Vandic.Application.UserCases.Categories.Events
 {
     public class CategoryAppEvent
-    {
-        
+    {       
 
         public class NotifyLogAppEvent : IApplicationEvent
         {            
             public Guid Id { get; }
             public string ModifiedBy { get; }
 
-            public EnumStatus Status { get; }   
-
+            public EnumStatus Status { get; }
+                       
             public NotifyLogAppEvent(Guid id, string modifiedBy, EnumStatus status)
             {
                 Id = id;

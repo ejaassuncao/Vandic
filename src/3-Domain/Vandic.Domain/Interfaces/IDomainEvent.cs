@@ -1,6 +1,8 @@
-﻿namespace Vandic.Application.Interfaces
+﻿namespace Vandic.Domain.Interfaces
 {
     public interface IDomainEvent
     {
+      
     }
+   
 }

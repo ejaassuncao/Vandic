@@ -22,7 +22,7 @@ namespace Vandic.Data.efcore.Context
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             var domainEvents = ChangeTracker.Entries<AggregateRoot>()
-                .SelectMany(x => x.Entity.DomainEvents)
+                .SelectMany(x => x.Entity.GetDomainEvents())
                 .ToList();
 
             var result = await base.SaveChangesAsync(cancellationToken);
