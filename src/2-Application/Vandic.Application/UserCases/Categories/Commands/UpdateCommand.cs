@@ -2,7 +2,7 @@
 
 namespace Vandic.Application.UserCases.Categories.Commands
 {
-    public class UpdateCommand : BaseCommand<bool>
+    public class UpdateCommand : IBaseCommand<bool>
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;

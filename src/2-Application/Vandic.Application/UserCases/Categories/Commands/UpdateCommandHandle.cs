@@ -8,26 +8,26 @@ using static Vandic.Application.UserCases.Categories.Events.CategoryAppEvent;
 
 namespace Vandic.Application.UserCases.Categories.Commands
 {
-    public class UpdateCommandHandle : BaseHandle<UpdateCommand, ResultCommand<bool>>
+    public class UpdateCommandHandle : BaseCommandHandle<UpdateCommand, ResultCommand<bool>>
     {
-        public UpdateCommandHandle(AppDbContext appDbContext, ICommandDispatcher commandDispatcher, ILogger<UpdateCommand> logger) : base(appDbContext, commandDispatcher, logger)
+        public UpdateCommandHandle(AppDbContext appDbContext, IDispatcherCommand commandDispatcher, ILogger<UpdateCommand> logger) : base(appDbContext, commandDispatcher, logger)
         {
         }
-
+        
         public override async Task<ResultCommand<bool>> HandleAsync(UpdateCommand request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return ResultCommand<bool>.Fail("Requisição inválida.");
             try
-            {                
+            {
                 var category = await _appDbContext.Categories
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
                 if (category == null)
                     return ResultCommand<bool>.Fail($"Categoria com Id {request.Id} não encontrada.");
 
-                category.Update(request.Name, request.NameMenu, request.ModifiedBy,  request.Description, request.CategoryRootId);
-                              
+                category.Update(request.Name, request.NameMenu, request.ModifiedBy, request.Description, request.CategoryRootId);
+
                 var success = await _appDbContext.SaveChangesAsync(cancellationToken) > 0;
 
 

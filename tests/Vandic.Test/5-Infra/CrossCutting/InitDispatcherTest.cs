@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Vandic.Application.Abstracts;
+using Vandic.Application.UserCases.Categories.Commands;
 using Vandic.Application.UserCases.Categories.Queries;
 using Vandic.CrossCutting.Meditor.Configurations;
 using static Vandic.Application.UserCases.Categories.Events.CategoryAppEvent;
@@ -25,15 +27,15 @@ namespace Vandic.Test
 
 
         [Fact]         
-        public  async Task ListCategoriaTest()
-        {         
-            var result = await controllerDispatcherTest.ListCategoria(new ListCategoryCommand());
-            Assert.Equal("Executou o Handle", result);
+        public  async Task CreateCommand()
+        {
+            ResultCommand<bool> result = await controllerDispatcherTest.CreateCommand(new CreateCommand());
+            Assert.True(result.Success);
         }
 
 
         [Fact]
-        public async Task PublicarMsgCategoria()
+        public async Task DispararNotificacaoEmail()
         {
             await controllerDispatcherTest.PublicarMsgCategoria(new SendEmailEvent());
             Assert.True(true);

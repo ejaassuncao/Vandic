@@ -6,9 +6,9 @@ namespace Vandic.Data.efcore.Context
 {
     public partial class AppDbContext : DbContext
     {
-        private readonly ICommandDispatcher _dispacher;
+        private readonly IDispatcherCommand _dispacher;
 
-        public AppDbContext(DbContextOptions<AppDbContext> options, ICommandDispatcher dispacher) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options, IDispatcherCommand dispacher) : base(options)
         {
             this._dispacher = dispacher;
         }

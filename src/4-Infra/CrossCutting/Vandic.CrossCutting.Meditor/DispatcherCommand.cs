@@ -7,7 +7,7 @@ namespace Vandic.CrossCutting.Meditor
     /// <summary>
     /// CommandDispatcher
     /// </summary>
-    public class CommandDispatcher : ICommandDispatcher
+    public class DispatcherCommand : IDispatcherCommand
     {
         private readonly IServiceProvider _serviceProvider;
 
@@ -15,7 +15,7 @@ namespace Vandic.CrossCutting.Meditor
         /// Dispatcher
         /// </summary>
         /// <param name="serviceProvider"></param>
-        public CommandDispatcher(IServiceProvider serviceProvider)
+        public DispatcherCommand(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
@@ -62,7 +62,7 @@ namespace Vandic.CrossCutting.Meditor
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public async Task PublishAsync(INotification notification, CancellationToken cancellationToken = default)
+        public async Task PublishAsync(object notification, CancellationToken cancellationToken = default)
         {
             if (notification == null)
                 throw new ArgumentNullException(nameof(notification));
@@ -71,17 +71,19 @@ namespace Vandic.CrossCutting.Meditor
             var handlerType = typeof(INotificationHandler<>).MakeGenericType(notificationType);
 
             var handlers = _serviceProvider.GetServices(handlerType);
-
-            if (handlers == null || !handlers.Any())
-                return;
-
-            var handleMethod = handlerType.GetMethod("Handle");
+            if (handlers == null)
+                throw new Exception("Services not found.");
 
             foreach (var handler in handlers)
             {
+                // Busca método 'HandleAsync' no tipo concreto do handler
+                var method = handler.GetType().GetMethod("HandleAsync");
+                if (method == null)
+                    throw new InvalidOperationException($"Método 'HandleAsync' não encontrado no handler '{handler.GetType().FullName}'.");
+
                 try
                 {
-                    var task = (Task)handleMethod.Invoke(handler, new object[] { notification, cancellationToken });
+                    var task = (Task)method.Invoke(handler, new object[] { notification, cancellationToken })!;
                     await task.ConfigureAwait(false);
                 }
                 catch (TargetInvocationException ex)
@@ -91,27 +93,27 @@ namespace Vandic.CrossCutting.Meditor
             }
         }
 
-     
-        public async Task PublishAsync<T>(T events, CancellationToken cancellationToken = default)
+        public async Task PublishAsync<TNotification>(TNotification notification, CancellationToken cancellationToken = default) where TNotification : INotification
         {
-            if (events == null)
-                throw new ArgumentNullException(nameof(events));
+            if (notification == null)
+                throw new ArgumentNullException(nameof(notification));
 
-            var eventsType = events.GetType();
-            var handlerType = typeof(IEventHandler<>).MakeGenericType(eventsType);
+            var notificationType = notification.GetType();
+            var handlerType = typeof(INotificationHandler<>).MakeGenericType(notificationType);
 
             var handlers = _serviceProvider.GetServices(handlerType);
-
-            if (handlers == null || !handlers.Any())
-                return;
-
-            var handleMethod = handlerType.GetMethod("Handle");
+            if (handlers == null)
+                throw new Exception("Services not found.");
 
             foreach (var handler in handlers)
             {
+                var method = handler.GetType().GetMethod("HandleAsync");
+                if (method == null)
+                    continue; // ou lançar exceção dependendo da criticidade
+
                 try
                 {
-                    var task = (Task)handleMethod.Invoke(handler, new object[] { events, cancellationToken });
+                    var task = (Task)method.Invoke(handler, new object[] { notification, cancellationToken })!;
                     await task.ConfigureAwait(false);
                 }
                 catch (TargetInvocationException ex)

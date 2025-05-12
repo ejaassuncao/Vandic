@@ -5,27 +5,27 @@ namespace Vandic.Application.UserCases.Categories.Events
 {
     public class CategoryDomainEventHandle
     {
-        public class CategoryCreatedEventHandle : IEventHandler<CategoryCreatedEvent>
+        public class CategoryCreatedEventHandle : INotificationDomainHandler<CategoryCreatedEvent>
         {
-            public Task HandleAsync(CategoryCreatedEvent evento)
+            public Task HandleAsync(CategoryCreatedEvent notification, CancellationToken cancellationToken)
             {
-                throw new NotImplementedException();
+               return Task.FromResult("ok");
             }
         }
 
-        public class CategoryUpdatedEventHandle : IEventHandler<CategoryUpdatedEvent>
+        public class CategoryUpdatedEventHandle : INotificationDomainHandler<CategoryCreatedEvent>
         {
-            public Task HandleAsync(CategoryUpdatedEvent evento)
+            public Task HandleAsync(CategoryCreatedEvent notification, CancellationToken cancellationToken)
             {
-                throw new NotImplementedException();
+                return Task.FromResult("ok");
             }
         }
 
-        public class CategoryDeletedEventHandle : IEventHandler<CategoryDeletedEvent>
+        public class CategoryDeletedEventHandle : INotificationDomainHandler<CategoryCreatedEvent>
         {
-            public Task HandleAsync(CategoryDeletedEvent evento)
+            public Task HandleAsync(CategoryCreatedEvent notification, CancellationToken cancellationToken)
             {
-                throw new NotImplementedException();
+                return Task.FromResult("ok");
             }
         }
     }

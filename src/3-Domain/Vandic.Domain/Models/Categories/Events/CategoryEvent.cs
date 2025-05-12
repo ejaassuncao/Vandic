@@ -22,7 +22,6 @@ namespace Vandic.Domain.Models.Categories.Events
             }
         }
 
-
         public class CategoryUpdatedEvent : IDomainEvent
         {
             private Guid id;

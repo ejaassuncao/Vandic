@@ -1,4 +1,4 @@
-﻿using Vandic.Application.Interfaces;
+﻿using Vandic.Domain.Interfaces;
 
 namespace Vandic.Domain.Abstracts
 {

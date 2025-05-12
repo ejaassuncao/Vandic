@@ -8,9 +8,9 @@ using static Vandic.Application.UserCases.Categories.Events.CategoryAppEvent;
 
 namespace Vandic.Application.UserCases.Categories.Commands
 {
-    public class DeleteCommandHandle : BaseHandle<DeleteCommand, ResultCommand<bool>>
+    public class DeleteCommandHandle : BaseCommandHandle<DeleteCommand, ResultCommand<bool>>
     {
-        public DeleteCommandHandle(AppDbContext appDbContext, ICommandDispatcher commandDispatcher, ILogger<DeleteCommand> logger) : base(appDbContext, commandDispatcher, logger)
+        public DeleteCommandHandle(AppDbContext appDbContext, IDispatcherCommand commandDispatcher, ILogger<DeleteCommand> logger) : base(appDbContext, commandDispatcher, logger)
         {
         }
 

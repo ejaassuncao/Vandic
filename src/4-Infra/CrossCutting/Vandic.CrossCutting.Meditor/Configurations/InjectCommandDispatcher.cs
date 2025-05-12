@@ -28,7 +28,7 @@ namespace Vandic.CrossCutting.Meditor.Configurations
             RegisterHandlers(services, assemblies, typeof(INotificationHandler<>));
 
             // Registra o dispatcher principal
-            services.AddTransient<ICommandDispatcher, CommandDispatcher>();
+            services.AddTransient<ISender, DispatcherCommand>();
 
             return services;
         }

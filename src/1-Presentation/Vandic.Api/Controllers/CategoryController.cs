@@ -18,10 +18,10 @@ namespace Vandic.Api.Controllers
     public class CategoryController : ControllerBase, IApiControllerBase
     {
         private readonly AppDbContext _appDbContext;
-        private readonly ICommandDispatcher _commandDispatcher;
+        private readonly IDispatcherCommand _commandDispatcher;
         private readonly ILogger<CategoryController> _logger;
 
-        public CategoryController(AppDbContext appDbContext, ICommandDispatcher commandDispatcher, ILogger<CategoryController> logger)
+        public CategoryController(AppDbContext appDbContext, IDispatcherCommand commandDispatcher, ILogger<CategoryController> logger)
         {
             _appDbContext = appDbContext;
             _commandDispatcher = commandDispatcher;
@@ -74,7 +74,7 @@ namespace Vandic.Api.Controllers
         }
 
         // Método privado genérico reutilizável
-        private async Task<IActionResult> HandleCommandAsync<TResponse>(BaseCommand<TResponse> command, CancellationToken cancellationToken)
+        private async Task<IActionResult> HandleCommandAsync<TResponse>(IBaseCommand<TResponse> command, CancellationToken cancellationToken)
             where TResponse : new()
         {
             try

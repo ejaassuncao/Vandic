@@ -17,7 +17,8 @@ namespace Vandic.Domain.Models.Categories.Entities
         {
             
         }
-        public Category(
+       
+        public void Create(
             string name,
             string nameMenu,
             string createddBy,

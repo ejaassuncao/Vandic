@@ -8,9 +8,9 @@ using static Vandic.Application.UserCases.Categories.Events.CategoryAppEvent;
 
 namespace Vandic.Application.UserCases.Categories.Commands
 {
-    public class CreateCommandHandle : BaseHandle<CreateCommand, ResultCommand<bool>>
+    public class CreateCommandHandle : BaseCommandHandle<CreateCommand, ResultCommand<bool>>
     {
-        public CreateCommandHandle(AppDbContext appDbContext, ICommandDispatcher commandDispatcher, ILogger<CreateCommand> logger) : base(appDbContext, commandDispatcher, logger)
+        public CreateCommandHandle(AppDbContext appDbContext, IDispatcherCommand commandDispatcher, ILogger<CreateCommand> logger) : base(appDbContext, commandDispatcher, logger)
         {
         }
 
@@ -19,7 +19,8 @@ namespace Vandic.Application.UserCases.Categories.Commands
             if (request == null)
                 return ResultCommand<bool>.Fail("Requisição inválida.");
 
-            var category = new Category(request.Name, request.NameMenu, request.CreatedBy, request.Description, request.CategoryRootId);
+            var category = new Category();
+            category.Create(request.Name, request.NameMenu, request.CreatedBy, request.Description, request.CategoryRootId);
 
             await _appDbContext.Categories.AddAsync(category, cancellationToken);
 
